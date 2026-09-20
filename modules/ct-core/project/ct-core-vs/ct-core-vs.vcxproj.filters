@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ct-core">
+      <UniqueIdentifier>{73abe8db-fe4e-4a79-a39c-f07ae6d149f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-core\model">
+      <UniqueIdentifier>{f6a5b475-ddb0-4ff1-b3f6-8f8c3fae8ba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-core\impl">
+      <UniqueIdentifier>{6ad4af3c-ed34-42fd-89a3-3346d9e69eff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-core\impl\ramdb">
+      <UniqueIdentifier>{13fed4e0-0c12-497a-b0aa-47d7cf8394e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-core\utils">
+      <UniqueIdentifier>{2e8c9864-2f58-461d-92a5-4dc392f34f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ramdb">
+      <UniqueIdentifier>{093f0499-ae66-48e4-97f4-206922e6e9e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\ct-core\TicketPlatform.h">
+      <Filter>Header Files\ct-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Room.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Theater.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\MovieSession.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\RoomSession.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Seat.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Movie.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\DBApi.h">
+      <Filter>Header Files\ct-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\TicketPlatformBuilder.h">
+      <Filter>Header Files\ct-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\Timer.h">
+      <Filter>Header Files\ct-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\TimerImpl.h">
+      <Filter>Header Files\ct-core\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\TicketPlatformImpl.h">
+      <Filter>Header Files\ct-core\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Cart.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\utils\Clock.h">
+      <Filter>Header Files\ct-core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\PlatformSettings.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\model\Order.h">
+      <Filter>Header Files\ct-core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\utils\Exception.h">
+      <Filter>Header Files\ct-core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\EventListener.h">
+      <Filter>Header Files\ct-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDatabase.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovie.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMTheater.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMRoom.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovieSession.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMSeat.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMCart.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMOrder.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\TicketPlatformImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp">
+      <Filter>Source Files\ramdb</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
