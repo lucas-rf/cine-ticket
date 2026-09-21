@@ -21,7 +21,7 @@ namespace ct::impl
         explicit RAMDataStore(const std::string& dataContents);
 
     public:
-        model::PlatformSettings settings;
+        model::PlatformSettings settings{};
         std::vector<RAMMovie> movies;
         std::vector<RAMTheater> theaters;
         std::vector<RAMRoom> rooms;

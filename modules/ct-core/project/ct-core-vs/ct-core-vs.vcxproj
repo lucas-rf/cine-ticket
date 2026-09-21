@@ -173,6 +173,7 @@
     <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp" />
     <ClCompile Include="..\..\src\ramdb\RAMDataStore.cpp" />
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp" />
+    <ClCompile Include="..\..\src\TimerImpl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,6 +3,7 @@
 
 #include <ct-core/utils/Exception.h>
 #include <ct-core/impl/ramdb/RAMDatabase.h>
+#include <ct-core/impl/TimerImpl.h>
 #include <iostream>
 
 using namespace std;
@@ -359,9 +360,27 @@ void testException()
     cout << exc3.what() << '\n';
 }
 
+static void timerFunction(ct::impl::TimerImpl* timer, int count)
+{
+    cout << count << "\n";
+    timer->Set(ct::Clock::now() + std::chrono::seconds{1}, std::bind(&timerFunction, timer, count + 1));
+}
+
+void testTimer()
+{
+    using namespace ct::impl;
+
+    TimerImpl timer{};
+
+    timer.Set(ct::Clock::now() + std::chrono::seconds{1}, std::bind(&timerFunction, &timer, 0));
+
+    char a;
+    std::cin >> a;
+}
+
 int main()
 {
-    testRamDb();
+    testTimer();
     return 0;
 }
 
