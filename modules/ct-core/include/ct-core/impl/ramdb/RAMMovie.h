@@ -11,6 +11,7 @@ namespace ct::impl
         std::string title;
         std::string synopsis;
         std::string classification;
+        std::vector<std::string> genre;
         std::string coverImage;
         std::string backgroundImage;
         int runtime;

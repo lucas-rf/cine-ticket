@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -96,7 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -113,7 +113,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -132,7 +132,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -145,6 +145,7 @@
     <ClInclude Include="..\..\include\ct-core\EventListener.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMCart.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDatabase.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovie.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovieSession.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMOrder.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp" />
+    <ClCompile Include="..\..\src\ramdb\RAMDataStore.cpp" />
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

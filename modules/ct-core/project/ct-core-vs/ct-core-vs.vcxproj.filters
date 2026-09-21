@@ -111,12 +111,18 @@
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMOrder.h">
       <Filter>Header Files\ct-core\impl\ramdb</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h">
+      <Filter>Header Files\ct-core\impl\ramdb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp">
+      <Filter>Source Files\ramdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ramdb\RAMDataStore.cpp">
       <Filter>Source Files\ramdb</Filter>
     </ClCompile>
   </ItemGroup>

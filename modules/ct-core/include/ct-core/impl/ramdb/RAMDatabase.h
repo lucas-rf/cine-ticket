@@ -1,13 +1,8 @@
 #pragma once
 
 #include <ct-core/DBApi.h>
-#include <ct-core/impl/ramdb/RAMMovie.h>
-#include <ct-core/impl/ramdb/RAMMovieSession.h>
-#include <ct-core/impl/ramdb/RAMRoom.h>
-#include <ct-core/impl/ramdb/RAMTheater.h>
+#include <ct-core/impl/ramdb/RAMDataStore.h>
 #include <ct-core/impl/ramdb/RAMCart.h>
-#include <ct-core/impl/ramdb/RAMSeat.h>
-#include <ct-core/impl/ramdb/RAMOrder.h>
 #include <vector>
 #include <unordered_map>
 #include <mutex>
@@ -45,16 +40,11 @@ namespace ct::impl
 
     private:
         mutable std::mutex cartLock;
-        std::vector<RAMMovie> movies;
-        std::vector<RAMTheater> theaters;
-        std::vector<RAMRoom> rooms;
-        std::vector<RAMMovieSession> movieSessions;
-        std::vector<RAMSeat> seats;
+        RAMDataStore data;
         std::unordered_map<int, RAMCart> cartsById;
         std::unordered_map<int, RAMCart*> cartsByUserKey;
-        std::unordered_map<std::string, RAMOrder> orders;
-        int nextCartId;
-        int nextOrderId;
+        int nextCartId{0};
+        int nextOrderId{0};
         
         std::vector<model::Theater> expandTheaters(const std::unordered_map<int, std::unordered_map<int, std::vector<int>>>& theatersToRoomsToSessions) const;
         model::Cart generateModelCart(const RAMCart& ramCart, bool includeSeats) const;

@@ -1,31 +1,36 @@
 #include <ct-core/impl/ramdb/RAMDatabase.h>
 #include <ct-core/utils/Exception.h>
+#include <nlohmann/json.hpp>
 #include <algorithm>
 
 namespace ct::impl
 {
+    RAMDatabase::RAMDatabase(const std::filesystem::path& dataFilePath):
+        data(dataFilePath)
+    { }
 
-
-
+    RAMDatabase::RAMDatabase(const std::string& dataContents):
+        data(dataContents)
+    { }
 
     model::PlatformSettings RAMDatabase::PlatformSettings_GetOne() const
     {
-        return model::PlatformSettings();
+        return data.settings;
     }
 
     model::Movie RAMDatabase::Movie_Get(int movieId) const
     {
-        if(movieId < 0 || movieId >= movies.size())
+        if(movieId < 0 || movieId >= data.movies.size())
             throw MovieNotFoundException(movieId);
-        return generateModelMovie(movies[movieId], {});
+        return generateModelMovie(data.movies[movieId], {});
     }
 
     model::Movie RAMDatabase::Movie_ViewDetailed(int movieId, int day) const
     {
-        if(movieId < 0 || movieId >= movies.size())
+        if(movieId < 0 || movieId >= data.movies.size())
             throw MovieNotFoundException(movieId);
 
-        auto& movie = movies[movieId];
+        auto& movie = data.movies[movieId];
 
         std::vector<model::Theater> theaters;
         if(day >= 0 && day < movie.idxDaysToSessions.size())
@@ -34,8 +39,8 @@ namespace ct::impl
 
             for(auto sessionId : movie.idxDaysToSessions[day])
             {
-                auto& session = movieSessions[sessionId];
-                auto& room = rooms[session.roomId];
+                auto& session = data.movieSessions[sessionId];
+                auto& room = data.rooms[session.roomId];
                 theatersToRoomToSessions[room.theaterId][session.roomId].push_back(sessionId);
             }
 
@@ -48,20 +53,20 @@ namespace ct::impl
     std::vector<model::Movie> RAMDatabase::Movies_GetAll() const
     {
         std::vector<model::Movie> moviesVec;
-        moviesVec.reserve(movies.size());
-        for(int movieId = 0; movieId < movies.size(); ++movieId)
-            moviesVec.push_back(generateModelMovie(movies[movieId], {}));
+        moviesVec.reserve(data.movies.size());
+        for(int movieId = 0; movieId < data.movies.size(); ++movieId)
+            moviesVec.push_back(generateModelMovie(data.movies[movieId], {}));
         return moviesVec;
     }
 
     std::vector<model::Movie> RAMDatabase::Movies_ViewByTheater(int theaterId, int day) const
     {
-        if(theaterId < 0 || theaterId >= theaters.size())
+        if(theaterId < 0 || theaterId >= data.theaters.size())
             throw TheaterNotFoundException(theaterId);
 
         std::unordered_map<int, std::unordered_map<int, std::unordered_map<int, std::vector<int>>>> auxMoviesToTheatersToRoomsToSessions;
 
-        auto& index = theaters[theaterId].idxMoviesToDaysToSessions;
+        auto& index = data.theaters[theaterId].idxMoviesToDaysToSessions;
         for(int movieId = 0; movieId < index.size(); ++movieId)
         {
             auto& daysToSessions = index[movieId];
@@ -71,8 +76,8 @@ namespace ct::impl
             auto& auxTheatersToRoomsToSessions = auxMoviesToTheatersToRoomsToSessions[movieId];
             for(auto sessionId : daysToSessions[day])
             {
-                auto& session = movieSessions[sessionId];
-                auto& room = rooms[session.roomId];
+                auto& session = data.movieSessions[sessionId];
+                auto& room = data.rooms[session.roomId];
                 auxTheatersToRoomsToSessions[room.theaterId][session.roomId].push_back(sessionId);
             }
         }
@@ -80,19 +85,19 @@ namespace ct::impl
         std::vector<model::Movie> moviesVec;
         moviesVec.reserve(auxMoviesToTheatersToRoomsToSessions.size());
         for(auto& [movieId, theatersToRoomsToSessions] : auxMoviesToTheatersToRoomsToSessions)
-            moviesVec.push_back(generateModelMovie(movies[movieId], expandTheaters(theatersToRoomsToSessions)));
+            moviesVec.push_back(generateModelMovie(data.movies[movieId], expandTheaters(theatersToRoomsToSessions)));
 
         return moviesVec;
     }
 
     model::RoomSession RAMDatabase::RoomSession_ViewDetailed(int movieSessionId, int userKey) const
     {
-        if(movieSessionId < 0 || movieSessionId >= movieSessions.size())
+        if(movieSessionId < 0 || movieSessionId >= data.movieSessions.size())
             throw MovieSessionNotFoundException(movieSessionId);
 
-        auto& session = movieSessions[movieSessionId];
-        auto& room = rooms[session.roomId];
-        auto& theater = theaters[room.theaterId];
+        auto& session = data.movieSessions[movieSessionId];
+        auto& room = data.rooms[session.roomId];
+        auto& theater = data.theaters[room.theaterId];
         return model::RoomSession{
             model::Theater{theater.id, theater.name},
             generateSeatModels(session.startingSeatId, session.startingSeatId + room.rows * room.columns, userKey)
@@ -129,7 +134,7 @@ namespace ct::impl
         cartsByUserKey.extract(cart.userKey);
 
         for(auto seatId : cart.idxSeats)
-            seats[seatId].cartId = -1;
+            data.seats[seatId].cartId = -1;
 
         return true;
     }
@@ -155,7 +160,7 @@ namespace ct::impl
 
     std::optional<model::Cart> RAMDatabase::Cart_TryAddSeat(int cartId, int seatId)
     {
-        if(seatId < 0 || seatId >= seats.size())
+        if(seatId < 0 || seatId >= data.seats.size())
             throw SeatNotFoundException(seatId);
 
         std::lock_guard<std::mutex> guard{cartLock};
@@ -165,7 +170,7 @@ namespace ct::impl
             throw CartNotFoundException(cartId);
 
         auto& cart = find->second;
-        auto& seat = seats[seatId];
+        auto& seat = data.seats[seatId];
 
         if(seat.cartId >= 0 || seat.orderId >= 0)
             return {};
@@ -173,7 +178,7 @@ namespace ct::impl
         if(cart.movieSessionId >= 0 && seat.movieSessionId != cart.movieSessionId)
         {
             for(auto seatId : cart.idxSeats)
-                seats[seatId].cartId = -1;
+                data.seats[seatId].cartId = -1;
             cart.idxSeats.clear();
         }
 
@@ -190,7 +195,7 @@ namespace ct::impl
 
     model::Cart RAMDatabase::Cart_RemoveSeat(int cartId, int seatId)
     {
-        if(seatId < 0 || seatId >= seats.size())
+        if(seatId < 0 || seatId >= data.seats.size())
             throw SeatNotFoundException(seatId);
 
         std::lock_guard<std::mutex> guard{cartLock};
@@ -200,7 +205,7 @@ namespace ct::impl
             throw CartNotFoundException(cartId);
 
         auto cart = find->second;
-        auto& seat = seats[seatId];
+        auto& seat = data.seats[seatId];
 
         if(seat.cartId != cartId)
             throw SeatNotInCartException(cartId, seatId);
@@ -217,11 +222,11 @@ namespace ct::impl
 
     model::Seat RAMDatabase::Seat_Get(int seatId, int userKey) const
     {
-        if(seatId < 0 || seatId >= seats.size())
+        if(seatId < 0 || seatId >= data.seats.size())
             throw SeatNotFoundException(seatId);
 
         std::lock_guard<std::mutex> guard{cartLock};
-        return generateSeatModel(seats[seatId], userKey);
+        return generateSeatModel(data.seats[seatId], userKey);
     }
 
     model::Order RAMDatabase::Order_ViewDetailed(const std::string& orderKey) const
@@ -230,8 +235,8 @@ namespace ct::impl
 
         {
             std::lock_guard<std::mutex> guard{cartLock};
-            auto iter = orders.find(orderKey);
-            if(iter == orders.end())
+            auto iter = data.orders.find(orderKey);
+            if(iter == data.orders.end())
                 throw OrderNotFoundException(orderKey);
             order = &iter->second;
         }
@@ -251,13 +256,13 @@ namespace ct::impl
                 throw CartNotFoundException(cartId);
 
             auto& cart = find->second;
-            auto emp = orders.try_emplace(orderKey, nextOrderId++, cart.movieSessionId, userEmail, orderKey, Clock::now());
+            auto emp = data.orders.try_emplace(orderKey, nextOrderId++, cart.movieSessionId, userEmail, orderKey, Clock::now());
             order = &emp.first->second;
 
             order->seats.reserve(cart.idxSeats.size());
             for(auto seatId : cart.idxSeats)
             {
-                auto& seat = seats[seatId];
+                auto& seat = data.seats[seatId];
                 seat.cartId = -1;
                 seat.userKey = -1;
                 seat.orderId = order->id;
@@ -279,13 +284,13 @@ namespace ct::impl
         theatersVec.reserve(theatersToRoomsToSessions.size());
         for(auto& [theaterId, roomsToSessions] : theatersToRoomsToSessions)
         {
-            theatersVec.emplace_back(model::Theater{theaterId, theaters[theaterId].name});
+            theatersVec.emplace_back(model::Theater{theaterId, data.theaters[theaterId].name});
             auto& theaterRooms = theatersVec.back().rooms;
 
             theaterRooms.reserve(roomsToSessions.size());
             for(auto& [roomId, sessionsIds] : roomsToSessions)
             {
-                auto& room = rooms[roomId];
+                auto& room = data.rooms[roomId];
                 theaterRooms.emplace_back(model::Room{
                     roomId,
                     theaterId,
@@ -300,7 +305,7 @@ namespace ct::impl
                 roomSessions.reserve(sessionsIds.size());
                 for(auto sessionId : sessionsIds)
                 {
-                    auto& session = movieSessions[sessionId];
+                    auto& session = data.movieSessions[sessionId];
                     roomSessions.push_back(model::MovieSession{
                         sessionId,
                         roomId,
@@ -354,6 +359,7 @@ namespace ct::impl
             ramMovie.title,
             ramMovie.synopsis,
             ramMovie.classification,
+            ramMovie.genre,
             ramMovie.coverImage,
             ramMovie.backgroundImage,
             ramMovie.runtime,
@@ -387,7 +393,7 @@ namespace ct::impl
         std::vector<model::Seat> seatsVec;
         seatsVec.reserve(seatsIds.size());
         for(auto seatId : seatsIds)
-            seatsVec.push_back(generateSeatModel(seats[seatId], userKey));
+            seatsVec.push_back(generateSeatModel(data.seats[seatId], userKey));
         return seatsVec;
     }
 
@@ -396,7 +402,7 @@ namespace ct::impl
         std::vector<model::Seat> seatsVec;
         seatsVec.reserve(endId - beginId);
         for(int seatId = beginId; seatId < endId; ++seatId)
-            seatsVec.push_back(generateSeatModel(seats[seatId], userKey));
+            seatsVec.push_back(generateSeatModel(data.seats[seatId], userKey));
         return seatsVec;
     }
 
