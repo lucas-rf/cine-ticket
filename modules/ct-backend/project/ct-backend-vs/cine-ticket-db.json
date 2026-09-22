@@ -1,0 +1,327 @@
+{
+  "settings": {
+    "cartDuration": 3000
+  },
+  "movies": [
+    {
+      "key": "die-hard",
+      "title": "Die Hard with a Vengeance",
+      "classification": "R",
+      "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
+      "genre": ["Action", "Adventure", "Thriller"],
+      "coverImage": "die-hard-cover.png",
+      "backgroundImage": "die-hard-background.png",
+      "runtime": 128
+    },
+    {
+      "key": "seven",
+      "title": "Seven",
+      "classification": "R",
+      "synopsis": "Two detectives try to track down a serial killer who chooses his victims based on the Seven Deadly Sins.",
+      "genre": ["Drama", "Crime"],
+      "coverImage": "seven-cover.png",
+      "backgroundImage": "seven-background.png",
+      "runtime": 127
+    },
+    {
+      "key": "braveheart",
+      "title": "Braveheart",
+      "classification": "R",
+      "synopsis": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.",
+      "genre": ["Drama", "War", "Epic"],
+      "coverImage": "braveheart-cover.png",
+      "backgroundImage": "braveheart-background.png",
+      "runtime": 178
+    },
+    {
+      "key": "jumanji",
+      "title": "Jumanji",
+      "classification": "PG",
+      "synopsis": "A magic board game summons jungle perils and a missing boy.",
+      "genre": ["Adventure", "Fantasy"],
+      "coverImage": "jumanji-cover.png",
+      "backgroundImage": "jumanji-background.png",
+      "runtime": 104
+    }
+  ],
+  "theaters": [
+    {
+      "name": "Cinemax North",
+      "rooms": [
+        {
+          "type": "2D",
+          "rows": 4,
+          "columns": 5,
+          "sessions": [
+            [
+              {
+                "movie-key": "die-hard",
+                "time-hour": 17,
+                "time-minute": 10,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "G63RS1",
+                    "positions": [11, 12]
+                  }
+                ]
+              },
+              {
+                "movie-key": "die-hard",
+                "time-hour": 20,
+                "time-minute": 30,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "J876RT",
+                    "positions": [7, 8, 9]
+                  }
+                ]
+              },
+              {
+                "movie-key": "seven",
+                "time-hour": 23,
+                "time-minute": 20,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "HY76T4",
+                    "positions": [16, 17]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "type": "2D",
+          "rows": 4,
+          "columns": 5,
+          "sessions": [
+            [
+              {
+                "movie-key": "jumanji",
+                "time-hour": 14,
+                "time-minute": 40,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "5T67UI",
+                    "positions": [0, 1, 2, 3]
+                  }
+                ]
+              },
+              {
+                "movie-key": "braveheart",
+                "time-hour": 18,
+                "time-minute": 30,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "FG5Y79",
+                    "positions": [10, 11]
+                  }
+                ]
+              },
+              {
+                "movie-key": "braveheart",
+                "time-hour": 22,
+                "time-minute": 20,
+                "price": 12.5,
+                "orders": [
+                  {
+                    "order-key": "HH2G6T",
+                    "positions": [6, 7, 8]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "iMAX Boulevard",
+      "rooms": [
+        {
+          "type": "2D iMAX",
+          "rows": 4,
+          "columns": 5,
+          "sessions": [
+            [
+              {
+                "movie-key": "die-hard",
+                "time-hour": 16,
+                "time-minute": 30,
+                "price": 16.2,
+                "orders": [
+                  {
+                    "order-key": "JU7I99",
+                    "positions": [10, 11]
+                  }
+                ]
+              },
+              {
+                "movie-key": "braveheart",
+                "time-hour": 20,
+                "time-minute": 0,
+                "price": 16.2,
+                "orders": [
+                  {
+                    "order-key": "989L9U",
+                    "positions": [5, 6, 7, 8]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "type": "2D iMAX",
+          "rows": 4,
+          "columns": 5,
+          "sessions": [
+            [
+              {
+                "movie-key": "seven",
+                "time-hour": 19,
+                "time-minute": 30,
+                "price": 16.2,
+                "orders": [
+                  {
+                    "order-key": "1E3G66",
+                    "positions": [17, 18]
+                  }
+                ]
+              },
+              {
+                "movie-key": "seven",
+                "time-hour": 22,
+                "time-minute": 40,
+                "price": 16.2,
+                "orders": [
+                  {
+                    "order-key": "K8ZD4G",
+                    "positions": [11, 12]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "type": "3D iMAX",
+          "rows": 4,
+          "columns": 5,
+          "sessions": [
+            [
+              {
+                "movie-key": "jumanji",
+                "time-hour": 13,
+                "time-minute": 50,
+                "price": 19.9,
+                "orders": [
+                  {
+                    "order-key": "GHT65A",
+                    "positions": [1, 2, 3, 4]
+                  }
+                ]
+              },
+              {
+                "movie-key": "jumanji",
+                "time-hour": 16,
+                "time-minute": 30,
+                "price": 19.9,
+                "orders": [
+                  {
+                    "order-key": "YY4DE2",
+                    "positions": [13, 14]
+                  }
+                ]
+              },
+              {
+                "movie-key": "jumanji",
+                "time-hour": 19,
+                "time-minute": 10,
+                "price": 19.9,
+                "orders": [
+                  {
+                    "order-key": "M5GH76",
+                    "positions": [15, 16, 17]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "key": "G63RS1",
+      "time": "1995-03-15 14:12:35",
+      "email": "martha.ceccato@outlook.com"
+    },
+    {
+      "key": "J876RT",
+      "time": "1995-03-14 11:52:44",
+      "email": "brandon.smith@gmail.com"
+    },
+    {
+      "key": "HY76T4",
+      "time": "1995-03-15 19:34:15",
+      "email": "nelson.higgins@outlook.com"
+    },
+    {
+      "key": "5T67UI",
+      "time": "1995-03-13 08:11:25",
+      "email": "trevor.collins@teramail.com"
+    },
+    {
+      "key": "FG5Y79",
+      "time": "1995-03-14 21:19:11",
+      "email": "susana.davis@gmail.com"
+    },
+    {
+      "key": "HH2G6T",
+      "time": "1995-03-15 15:01:57",
+      "email": "david.wilson@hotmail.com"
+    },
+    {
+      "key": "JU7I99",
+      "time": "1995-03-15 12:44:11",
+      "email": "robert.brown@gmail.com"
+    },
+    {
+      "key": "989L9U",
+      "time": "1995-03-15 11:11:44",
+      "email": "amanda.miller@hotmail.com"
+    },
+    {
+      "key": "1E3G66",
+      "time": "1995-03-15 13:15:18",
+      "email": "olivia.taylor@gmail.com"
+    },
+    {
+      "key": "K8ZD4G",
+      "time": "1995-03-14 23:11:55",
+      "email": "benjamin.lee@yahoo.com"
+    },
+    {
+      "key": "GHT65A",
+      "time": "1995-03-14 22:50:05",
+      "email": "sebastian.young@outlook.com"
+    },
+    {
+      "key": "YY4DE2",
+      "time": "1995-03-13 19:55:31",
+      "email": "amelia.martin@yahoo.com"
+    },
+    {
+      "key": "M5GH76",
+      "time": "1995-03-15 01:15:00",
+      "email": "liam.jackson@gmail.com"
+    }
+  ]
+}

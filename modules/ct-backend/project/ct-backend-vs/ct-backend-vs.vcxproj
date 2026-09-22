@@ -77,7 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include;../../../../third-party/argparse/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -94,7 +94,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include;../../../../third-party/argparse/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include;../../../../third-party/argparse/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include;../../../../third-party/argparse/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -139,6 +139,7 @@
     <ClCompile Include="..\..\src\api\controllers\QueryController.cpp" />
     <ClCompile Include="..\..\src\api\Session.cpp" />
     <ClCompile Include="..\..\src\Application.cpp" />
+    <ClCompile Include="..\..\src\Launcher.cpp" />
     <ClCompile Include="..\..\src\utils\json\CartJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp" />
@@ -147,7 +148,12 @@
     <ClCompile Include="..\..\src\utils\json\RoomSessionJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\SeatJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\TheaterJson.cpp" />
-    <ClCompile Include="ct-backend-vs.cpp" />
+    <ClCompile Include="ct-backend-vs.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ct-core\project\ct-core-vs\ct-core-vs.vcxproj">
