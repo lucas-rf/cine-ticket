@@ -14,6 +14,9 @@ namespace ct::impl
     public:
         TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener);
 
+        //TicketPlatformImpl(TicketPlatformImpl&&) = delete;
+        //TicketPlatformImpl(const TicketPlatformImpl&) = delete;
+
         virtual void IncMovieSessionListeners(int movieSessionId) override;
         virtual void DecMovieSessionListeners(int movieSessionId) override;
 
@@ -21,9 +24,13 @@ namespace ct::impl
         virtual model::Movie ViewMovieDetails(int movieId, int day) const override;
         virtual std::vector<model::Movie> GetAllMovies() const override;
         virtual std::vector<model::Movie> ViewMoviesByTheater(int theaterId, int day) const override;
+        virtual model::RoomSession ViewRoomSessionDetails(int movieSessionId, int userKey) const override;
+        virtual model::Cart ViewCartDetails(int userKey) const override;
+        virtual model::Seat GetSeat(int seatId, int userKey) const override;
+        virtual model::Order ViewOrderDetails(const std::string& orderKey) const override;
 
         virtual bool SelectSeat(int seatId, int userKey) override;
-        virtual bool UnselectSeat(int seatId, int userKey) override;
+        virtual bool DeselectSeat(int seatId, int userKey) override;
 
         virtual std::optional<model::Order> OrderCart(int userKey, const std::string& orderKey, const std::string& userEmail) override;
 
@@ -40,12 +47,12 @@ namespace ct::impl
         Timer& timer;
         EventListener* const listener;
         const model::PlatformSettings settings;
-        std::mutex cartsLock;
+        mutable std::mutex cartsLock;
         std::unordered_map<int, std::shared_ptr<ActiveCart>> activeCarts;
         std::mutex roomsLock;
         std::unordered_map<int, int> roomListeners;
 
-        std::shared_ptr<ActiveCart> getCart(int userKey);
+        std::shared_ptr<ActiveCart> getCart(int userKey) const;
         void removeActiveCart(int userKey);
         std::shared_ptr<ActiveCart> getOrCreateCart(int userKey);
 

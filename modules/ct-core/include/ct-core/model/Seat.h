@@ -1,8 +1,5 @@
 #pragma once
 
-#include <ct-core/model/Cart.h>
-#include <optional>
-
 namespace ct::model
 {
     struct Seat
@@ -13,6 +10,7 @@ namespace ct::model
             SELECTED_BY_CURRENT_USER,
             SELECTED_BY_OTHER_USER,
             ORDERED,
+            INVALID,
         };
 
         int id;
@@ -22,6 +20,5 @@ namespace ct::model
         State state;
         int cartId;
         int orderId;
-        // std::optional<Cart> cart;
     };
 }

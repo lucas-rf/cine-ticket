@@ -168,12 +168,14 @@
     <ClInclude Include="..\..\include\ct-core\Timer.h" />
     <ClInclude Include="..\..\include\ct-core\utils\Clock.h" />
     <ClInclude Include="..\..\include\ct-core\utils\Exception.h" />
+    <ClInclude Include="..\..\include\ct-core\utils\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp" />
     <ClCompile Include="..\..\src\ramdb\RAMDataStore.cpp" />
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp" />
     <ClCompile Include="..\..\src\TimerImpl.cpp" />
+    <ClCompile Include="..\..\src\utils\Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

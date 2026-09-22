@@ -31,6 +31,9 @@
     <Filter Include="Source Files\ramdb">
       <UniqueIdentifier>{093f0499-ae66-48e4-97f4-206922e6e9e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{84a5ca85-1949-45a1-bb36-dfe0b936f8f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ct-core\TicketPlatform.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h">
       <Filter>Header Files\ct-core\impl\ramdb</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\utils\Time.h">
+      <Filter>Header Files\ct-core\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp">
@@ -127,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\TimerImpl.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\Time.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

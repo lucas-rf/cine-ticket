@@ -1,18 +1,11 @@
 #include <ct-core/impl/ramdb/RAMDataStore.h>
+#include <ct-core/utils/Time.h>
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <sstream>
 
 namespace ct::impl
 {
-    static Clock::time_point getTimeFromString(const std::string& text)
-    {
-        std::stringstream ss{text};
-        Clock::time_point tp;
-        ss >> std::chrono::parse("%Y-%m-%d %H:%M:%S", tp);
-        return tp;
-    }
-
     static void loadFromJsonContent(RAMDataStore& data, const nlohmann::json& content)
     {
         auto& settings = content["settings"];
@@ -46,7 +39,7 @@ namespace ct::impl
                 -1,
                 order["email"],
                 order["key"],
-                getTimeFromString(order["time"])
+                utils::StrToTimePoint(order["time"])
             );
 
         auto& theaters = content["theaters"];

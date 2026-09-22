@@ -204,7 +204,7 @@ namespace ct::impl
         if(find == cartsById.end())
             throw CartNotFoundException(cartId);
 
-        auto cart = find->second;
+        auto& cart = find->second;
         auto& seat = data.seats[seatId];
 
         if(seat.cartId != cartId)

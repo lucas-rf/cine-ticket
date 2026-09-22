@@ -13,10 +13,114 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\ct-backend">
+      <UniqueIdentifier>{9cd7fcae-4c96-4bbc-9173-51231e3ae657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-backend\api">
+      <UniqueIdentifier>{7b8649fb-4048-4877-bc85-85da86a292c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ct-backend\api\controllers">
+      <UniqueIdentifier>{ac8fcd25-5603-41b6-804a-1e7c87116d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api">
+      <UniqueIdentifier>{e205622b-34e7-4db4-ab60-56b863b5a508}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api\controllers">
+      <UniqueIdentifier>{cce5c496-ed14-4361-9c62-7391c18a07f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{3009be99-8421-492f-8b71-839e3c4ff0b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils\json">
+      <UniqueIdentifier>{9f925a0c-0f03-4fa2-8e84-7c698ed4597d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils\wrappers">
+      <UniqueIdentifier>{3551d130-c0b0-401a-96c6-f52c91194466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{c5972094-b00e-4e88-a338-7510940e4737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils\json">
+      <UniqueIdentifier>{8f565906-1645-453a-92f3-13f2896294ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ct-backend-vs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\api\controllers\QueryController.cpp">
+      <Filter>Source Files\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\api\controllers\CommandController.cpp">
+      <Filter>Source Files\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\api\Session.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\CartJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\MovieJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\OrderJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\RoomJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\RoomSessionJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\SeatJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\json\TheaterJson.cpp">
+      <Filter>Source Files\utils\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\MovieJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\wrappers\JsonConverterWrapper.h">
+      <Filter>Header Files\utils\wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\api\controllers\QueryController.h">
+      <Filter>Header Files\ct-backend\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\api\controllers\CommandController.h">
+      <Filter>Header Files\ct-backend\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\CartJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\MovieSessionJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\OrderJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\RoomJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\SeatJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\TheaterJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\utils\json\RoomSessionJson.h">
+      <Filter>Header Files\utils\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\api\Session.h">
+      <Filter>Header Files\ct-backend\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\api\CrowApp.h">
+      <Filter>Header Files\ct-backend\api</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

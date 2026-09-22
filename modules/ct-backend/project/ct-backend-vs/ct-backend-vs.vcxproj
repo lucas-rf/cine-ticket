@@ -77,7 +77,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../../ct-core/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -93,7 +94,8 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../../ct-core/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,7 +109,8 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../../ct-core/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,7 +126,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>../../../ct-core/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../ct-core/include;../../../../third-party/crow-cpp/include;../../../../third-party/asio/include;../../../../third-party/nlohmann-json/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,12 +135,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\api\controllers\CommandController.cpp" />
+    <ClCompile Include="..\..\src\api\controllers\QueryController.cpp" />
+    <ClCompile Include="..\..\src\api\Session.cpp" />
+    <ClCompile Include="..\..\src\utils\json\CartJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\MovieJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\OrderJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\RoomJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\RoomSessionJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\SeatJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\TheaterJson.cpp" />
     <ClCompile Include="ct-backend-vs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ct-core\project\ct-core-vs\ct-core-vs.vcxproj">
       <Project>{a0af738c-1e40-4bf9-ba24-e24909329a17}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\ct-backend\api\controllers\CommandController.h" />
+    <ClInclude Include="..\..\include\ct-backend\api\controllers\QueryController.h" />
+    <ClInclude Include="..\..\include\ct-backend\api\CrowApp.h" />
+    <ClInclude Include="..\..\include\ct-backend\api\Session.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\CartJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\MovieJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\MovieSessionJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\OrderJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\RoomJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\RoomSessionJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\SeatJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\TheaterJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\wrappers\JsonConverterWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

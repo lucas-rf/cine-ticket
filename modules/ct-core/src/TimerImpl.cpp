@@ -24,10 +24,10 @@ namespace ct::impl
     bool TimerImpl::Cancel(ID id) noexcept
     {
         std::lock_guard<std::mutex> guard{lock};
-        auto refIter = idToItem.find(id);
-        if(refIter == idToItem.end())
+        auto node = idToItem.extract(id);
+        if(node.empty())
             return false;
-        queue.erase(refIter->second);
+        queue.erase(node.mapped());
         return true;
     }
 

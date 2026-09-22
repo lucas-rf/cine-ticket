@@ -4,6 +4,10 @@
 #include <ct-core/utils/Exception.h>
 #include <ct-core/impl/ramdb/RAMDatabase.h>
 #include <ct-core/impl/TimerImpl.h>
+#include <ct-core/impl/TicketPlatformImpl.h>
+#include <ct-backend/api/controllers/QueryController.h>
+#include <ct-backend/api/controllers/CommandController.h>
+#include <crow.h>
 #include <iostream>
 
 using namespace std;
@@ -378,9 +382,33 @@ void testTimer()
     std::cin >> a;
 }
 
+static void testCrow2()
+{
+    using namespace ct::impl;
+
+    RAMDatabase db(db_sample_01);
+    TimerImpl timer;
+    TicketPlatformImpl ticketPlatform(db, timer, nullptr);
+
+    ct::api::CrowApp app{ct::api::CrowSession{
+        crow::CookieParser::Cookie("session").max_age(/*one day*/ 24 * 60 * 60).path("/"),
+        8,
+        crow::InMemoryStore{}
+    }};
+
+    ct::api::Session session(app);
+
+    ct::api::QueryController queryCtrl(ticketPlatform, app, session);
+    ct::api::CommandController cmdCtrl(ticketPlatform, app, session);
+
+    app.port(18080)
+        .multithreaded()
+        .run();
+}
+
 int main()
 {
-    testTimer();
+    testCrow2();
     return 0;
 }
 

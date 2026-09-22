@@ -59,6 +59,10 @@ namespace ct
     class CartNotFoundException: public ItemNotFoundException
     {
     public:
+        CartNotFoundException():
+            ItemNotFoundException("No cart found for the current session")
+        { }
+
         CartNotFoundException(int cartId):
             ItemNotFoundException(std::format("Cart id #{} not found", cartId))
         { }

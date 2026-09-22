@@ -1,4 +1,5 @@
 #include <ct-core/impl/TicketPlatformImpl.h>
+#include <ct-core/utils/Exception.h>
 
 namespace ct::impl
 {
@@ -47,6 +48,34 @@ namespace ct::impl
         return db.Movies_ViewByTheater(theaterId, day);
     }
 
+    model::RoomSession TicketPlatformImpl::ViewRoomSessionDetails(int movieSessionId, int userKey) const
+    {
+        return db.RoomSession_ViewDetailed(movieSessionId, userKey);
+    }
+
+    model::Cart TicketPlatformImpl::ViewCartDetails(int userKey) const
+    {
+        auto activeCart = getCart(userKey);
+        if(!activeCart)
+            throw CartNotFoundException();
+
+        std::lock_guard<std::mutex> guard{activeCart->lock};
+        if(activeCart->expired)
+            throw CartNotFoundException();
+
+        return db.Cart_ViewDetailed(activeCart->dbCart.id);
+    }
+
+    model::Seat TicketPlatformImpl::GetSeat(int seatId, int userKey) const
+    {
+        return db.Seat_Get(seatId, userKey);
+    }
+
+    model::Order TicketPlatformImpl::ViewOrderDetails(const std::string& orderKey) const
+    {
+        return db.Order_ViewDetailed(orderKey);
+    }
+
     bool TicketPlatformImpl::SelectSeat(int seatId, int userKey)
     {
         auto seat = db.Seat_Get(seatId, userKey);
@@ -80,7 +109,7 @@ namespace ct::impl
         return true;
     }
 
-    bool TicketPlatformImpl::UnselectSeat(int seatId, int userKey)
+    bool TicketPlatformImpl::DeselectSeat(int seatId, int userKey)
     {
         auto seat = db.Seat_Get(seatId, userKey);
         if(seat.state != model::Seat::SELECTED_BY_CURRENT_USER)
@@ -104,6 +133,8 @@ namespace ct::impl
             {
                 activeCart->expired = true;
                 expired = true;
+                timer.Cancel(activeCart->timerId);
+                db.Cart_TryDelete(activeCart->dbCart.id);
                 removeActiveCart(userKey);
             }
         }
@@ -128,7 +159,10 @@ namespace ct::impl
             if(activeCart->expired)
                 return {};
 
-            order = db.Order_CreateFromCart(userKey, orderKey, userEmail);
+            activeCart->expired = true;
+            timer.Cancel(activeCart->timerId);
+
+            order = db.Order_CreateFromCart(activeCart->dbCart.id, orderKey, userEmail);
 
             removeActiveCart(userKey);
         }
@@ -138,7 +172,7 @@ namespace ct::impl
         return order;
     }
 
-    std::shared_ptr<TicketPlatformImpl::ActiveCart> TicketPlatformImpl::getCart(int userKey)
+    std::shared_ptr<TicketPlatformImpl::ActiveCart> TicketPlatformImpl::getCart(int userKey) const
     {
         std::lock_guard<std::mutex> guard{cartsLock};
         auto find = activeCarts.find(userKey);
