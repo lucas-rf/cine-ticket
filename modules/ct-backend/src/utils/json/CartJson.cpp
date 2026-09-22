@@ -9,7 +9,7 @@ namespace ct::model
         j = nlohmann::json{
             {"id", cart.id},
             {"movieSessionId", cart.movieSessionId},
-            {"startTime", utils::TimePointToStr(cart.startTime)},
+            {"expirationTime", utils::TimePointToStr(cart.expirationTime)},
             {"seatCount", cart.seatCount},
             {"seats", cart.seats}
         };
@@ -19,7 +19,7 @@ namespace ct::model
     {
         j.at("id").get_to(cart.id);
         j.at("movieSessionId").get_to(cart.movieSessionId);
-        cart.startTime = utils::StrToTimePoint(j.at("startTime"));
+        cart.expirationTime = utils::StrToTimePoint(j.at("expirationTime"));
         j.at("seatCount").get_to(cart.seatCount);
         j.at("seats").get_to(cart.seats);
         cart.userKey = -1;

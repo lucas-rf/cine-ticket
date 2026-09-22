@@ -11,7 +11,7 @@ namespace ct::model
         int id;
         int movieSessionId;
         int userKey;
-        Clock::time_point startTime;
+        Clock::time_point expirationTime;
         int seatCount;
         std::vector<Seat> seats;
     };

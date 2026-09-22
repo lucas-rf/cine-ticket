@@ -10,7 +10,7 @@ namespace ct::impl
         int id;
         int movieSessionId;
         int userKey;
-        Clock::time_point startTime;
+        Clock::time_point expirationTime;
         std::unordered_set<int> idxSeats;
     };
 }

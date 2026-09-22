@@ -5,7 +5,8 @@
 #include <ct-core/Timer.h>
 #include <ct-core/EventListener.h>
 #include <mutex>
-#include <unordered_map>
+#include <unordered_set>
+#include <atomic>
 
 namespace ct::impl
 {
@@ -14,11 +15,8 @@ namespace ct::impl
     public:
         TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener);
 
-        //TicketPlatformImpl(TicketPlatformImpl&&) = delete;
-        //TicketPlatformImpl(const TicketPlatformImpl&) = delete;
-
-        virtual void IncMovieSessionListeners(int movieSessionId) override;
-        virtual void DecMovieSessionListeners(int movieSessionId) override;
+        virtual void SetMovieSessionEvents(int movieSessionId, bool active) override;
+        virtual void SetCartEvents(int userKey, bool active) override;
 
         virtual model::Movie GetMovie(int movieId) const override;
         virtual model::Movie ViewMovieDetails(int movieId, int day) const override;
@@ -49,8 +47,9 @@ namespace ct::impl
         const model::PlatformSettings settings;
         mutable std::mutex cartsLock;
         std::unordered_map<int, std::shared_ptr<ActiveCart>> activeCarts;
-        std::mutex roomsLock;
-        std::unordered_map<int, int> roomListeners;
+        std::mutex eventsLock;
+        std::unordered_set<int> activeEvents;
+        std::atomic<bool> cartEventsActive;
 
         std::shared_ptr<ActiveCart> getCart(int userKey) const;
         void removeActiveCart(int userKey);
@@ -59,8 +58,13 @@ namespace ct::impl
         void resetCartTimer(ActiveCart& cart);
         void cartTimerExpired(int userKey);
 
-        void seatUpdated(const model::Seat& seat);
-        void seatsUpdated(const std::vector<model::Seat>& seats);
+        inline void seatSelected(model::Seat& seat, int userKey, int cartId);
+        inline void seatDeselected(model::Seat& seat, int userKey);
+        inline void seatsDeselected(std::vector<model::Seat>& seats, int userKey);
+        inline void seatsOrdered(std::vector<model::Seat>& seats, int userKey);
+
+        void cartCreated(const ActiveCart& cart);
+        void cartRecreated(const ActiveCart& cart);
         void cartExpired(const ActiveCart& cart);
 
         bool roomEventEnabled(int movieSessionId);

@@ -15,7 +15,7 @@ using namespace std;
 static const std::string db_sample_01 = R"(
 {
   "settings": {
-    "cartDuration": 300
+    "cartDuration": 30
   },
   "movies": [
     {

@@ -1,5 +1,6 @@
 #include <ct-core/impl/TicketPlatformImpl.h>
 #include <ct-core/utils/Exception.h>
+#include <algorithm>
 
 namespace ct::impl
 {
@@ -7,25 +8,26 @@ namespace ct::impl
         db{db},
         timer{timer},
         listener{listener},
-        settings{db.PlatformSettings_GetOne()}
-    {
-    }
+        settings{db.PlatformSettings_GetOne()},
+        cartEventsActive{false}
+    { }
 
-    void TicketPlatformImpl::IncMovieSessionListeners(int movieSessionId)
+    void TicketPlatformImpl::SetMovieSessionEvents(int movieSessionId, bool active)
     {
-        std::lock_guard<std::mutex> guard{roomsLock};
-        ++roomListeners[movieSessionId];
-    }
-
-    void TicketPlatformImpl::DecMovieSessionListeners(int movieSessionId)
-    {
-        std::lock_guard<std::mutex> guard{roomsLock};
-        auto find = roomListeners.find(movieSessionId);
-        if(find == roomListeners.end())
+        if(!listener)
             return;
-        --find->second;
-        if(find->second == 0)
-            roomListeners.erase(find);
+        std::lock_guard<std::mutex> guard{eventsLock};
+        if(active)
+            activeEvents.insert(movieSessionId);
+        else
+            activeEvents.erase(movieSessionId);
+    }
+
+    void TicketPlatformImpl::SetCartEvents(int userKey, bool active)
+    {
+        if(!listener)
+            return;
+        cartEventsActive.store(active);
     }
 
     model::Movie TicketPlatformImpl::GetMovie(int movieId) const
@@ -83,12 +85,16 @@ namespace ct::impl
             return false;
 
         auto activeCart = getOrCreateCart(userKey);
+        bool cartIsNew = false;
         std::vector<model::Seat> oldSeats;
 
         {
             std::lock_guard<std::mutex> guard{activeCart->lock};
             if(activeCart->expired)
                 return false;
+
+            if(activeCart->dbCart.seatCount == 0)
+                cartIsNew = true;
 
             auto updatedCart = db.Cart_TryAddSeat(activeCart->dbCart.id, seatId);
             if(!updatedCart)
@@ -103,8 +109,17 @@ namespace ct::impl
                 resetCartTimer(*activeCart);
         }
 
-        seatsUpdated(oldSeats);
-        seatUpdated(seat);
+        if(cartIsNew)
+        {
+            cartCreated(*activeCart);
+        }
+        else if(!oldSeats.empty())
+        {
+            seatsDeselected(oldSeats, userKey);
+            cartRecreated(*activeCart);
+        }
+
+        seatSelected(seat, userKey, activeCart->dbCart.id);
 
         return true;
     }
@@ -139,7 +154,7 @@ namespace ct::impl
             }
         }
 
-        seatUpdated(seat);
+        seatDeselected(seat, userKey);
         if(expired)
             cartExpired(*activeCart);
 
@@ -167,7 +182,7 @@ namespace ct::impl
             removeActiveCart(userKey);
         }
 
-        seatsUpdated(activeCart->dbCart.seats);
+        seatsOrdered(order->seats, userKey);
 
         return order;
     }
@@ -211,7 +226,7 @@ namespace ct::impl
             timer.Cancel(cart.timerId);
 
         cart.timerId = timer.Set(
-            cart.dbCart.startTime + settings.cartDuration,
+            cart.dbCart.expirationTime,
             std::bind(&TicketPlatformImpl::cartTimerExpired, this, cart.dbCart.userKey)
         );
     }
@@ -228,7 +243,7 @@ namespace ct::impl
             if(activeCart->expired)
                 return;
 
-            if(activeCart->dbCart.startTime + settings.cartDuration > Clock::now())
+            if(activeCart->dbCart.expirationTime > Clock::now())
                 return;
 
             activeCart->expired = true;
@@ -238,39 +253,71 @@ namespace ct::impl
             removeActiveCart(userKey);
         }
 
-        seatsUpdated(activeCart->dbCart.seats);
+        seatsDeselected(activeCart->dbCart.seats, userKey);
         cartExpired(*activeCart);
     }
 
-    void TicketPlatformImpl::seatUpdated(const model::Seat& seat)
+    void TicketPlatformImpl::seatSelected(model::Seat& seat, int userKey, int cartId)
     {
-        if(listener && roomEventEnabled(seat.movieSessionId))
-            listener->SeatsUpdated({seat.id});
+        if(roomEventEnabled(seat.movieSessionId))
+        {
+            seat.cartId = cartId;
+            seat.state = model::Seat::SELECTED_BY_CURRENT_USER;
+            listener->SeatSelected(seat, userKey);
+        }
     }
 
-    void TicketPlatformImpl::seatsUpdated(const std::vector<model::Seat>& seats)
+    void TicketPlatformImpl::seatDeselected(model::Seat& seat, int userKey)
     {
-        if(listener && !seats.empty() && roomEventEnabled(seats[0].movieSessionId))
+        if(roomEventEnabled(seat.movieSessionId))
         {
-            std::vector<int> ids;
-            ids.reserve(seats.size());
-            for(auto& seat : seats)
-                ids.push_back(seat.id);
-            listener->SeatsUpdated(std::move(ids));
+            seat.cartId = -1;
+            seat.state = model::Seat::FREE;
+            listener->SeatDeselected(seat, userKey);
         }
+    }
+
+    void TicketPlatformImpl::seatsDeselected(std::vector<model::Seat>& seats, int userKey)
+    {
+        if(!seats.empty() && roomEventEnabled(seats[0].movieSessionId))
+        {
+            for(auto& seat : seats)
+            {
+                seat.cartId = -1;
+                seat.state = model::Seat::FREE;
+            }
+            listener->SeatsDeselected(seats, userKey);
+        }
+    }
+
+    void TicketPlatformImpl::seatsOrdered(std::vector<model::Seat>& seats, int userKey)
+    {
+        if(roomEventEnabled(seats[0].movieSessionId))
+            listener->SeatsOrdered(seats, userKey);
+    }
+
+    void TicketPlatformImpl::cartCreated(const ActiveCart& cart)
+    {
+        if(cartEventsActive.load())
+            listener->CartCreated(cart.dbCart.id, cart.dbCart.userKey);
+    }
+
+    void TicketPlatformImpl::cartRecreated(const ActiveCart& cart)
+    {
+        if(cartEventsActive.load())
+            listener->CartRecreated(cart.dbCart.id, cart.dbCart.userKey);
     }
 
     void TicketPlatformImpl::cartExpired(const ActiveCart& cart)
     {
-        if(listener)
-            listener->CartExpired(cart.dbCart.id);
+        if(cartEventsActive.load())
+            listener->CartExpired(cart.dbCart.id, cart.dbCart.userKey);
     }
 
     bool TicketPlatformImpl::roomEventEnabled(int movieSessionId)
     {
-        std::lock_guard<std::mutex> guard{roomsLock};
-        return roomListeners.contains(movieSessionId);
+        std::lock_guard<std::mutex> guard{eventsLock};
+        return activeEvents.contains(movieSessionId);
     }
-
 
 }

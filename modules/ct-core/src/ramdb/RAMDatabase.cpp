@@ -183,7 +183,7 @@ namespace ct::impl
         }
 
         if(cart.idxSeats.empty())
-            cart.startTime = Clock::now();
+            cart.expirationTime = Clock::now() + data.settings.cartDuration;
 
         seat.cartId = cart.id;
         seat.userKey = cart.userKey;
@@ -333,7 +333,7 @@ namespace ct::impl
             ramCart.id,
             ramCart.movieSessionId,
             ramCart.userKey,
-            ramCart.startTime,
+            ramCart.expirationTime,
             static_cast<int>(ramCart.idxSeats.size()),
             includeSeats ? genSeats() : decltype(model::Cart::seats){}
         };

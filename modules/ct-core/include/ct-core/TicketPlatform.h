@@ -12,8 +12,8 @@ namespace ct
     class TicketPlatform
     {
     public:
-        virtual void IncMovieSessionListeners(int movieSessionId) = 0;
-        virtual void DecMovieSessionListeners(int movieSessionId) = 0;
+        virtual void SetMovieSessionEvents(int movieSessionId, bool active) = 0;
+        virtual void SetCartEvents(int userKey, bool active) = 0;
 
         virtual model::Movie GetMovie(int movieId) const = 0;
         virtual model::Movie ViewMovieDetails(int movieId, int day) const = 0;
