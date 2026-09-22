@@ -7,6 +7,7 @@
 #include <ct-core/impl/TicketPlatformImpl.h>
 #include <ct-backend/api/controllers/QueryController.h>
 #include <ct-backend/api/controllers/CommandController.h>
+#include <ct-backend/Application.h>
 #include <crow.h>
 #include <iostream>
 
@@ -15,7 +16,7 @@ using namespace std;
 static const std::string db_sample_01 = R"(
 {
   "settings": {
-    "cartDuration": 30
+    "cartDuration": 3000
   },
   "movies": [
     {
@@ -406,9 +407,15 @@ static void testCrow2()
         .run();
 }
 
+static void testApp()
+{
+    ct::Application app(18080, true, db_sample_01);
+    app.Run();
+}
+
 int main()
 {
-    testCrow2();
+    testApp();
     return 0;
 }
 

@@ -44,7 +44,7 @@ namespace ct::impl
         std::unordered_map<int, RAMCart> cartsById;
         std::unordered_map<int, RAMCart*> cartsByUserKey;
         int nextCartId{0};
-        int nextOrderId{0};
+        int nextOrderId;
         
         std::vector<model::Theater> expandTheaters(const std::unordered_map<int, std::unordered_map<int, std::vector<int>>>& theatersToRoomsToSessions) const;
         model::Cart generateModelCart(const RAMCart& ramCart, bool includeSeats) const;

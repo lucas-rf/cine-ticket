@@ -6,11 +6,13 @@
 namespace ct::impl
 {
     RAMDatabase::RAMDatabase(const std::filesystem::path& dataFilePath):
-        data(dataFilePath)
+        data(dataFilePath),
+        nextOrderId{static_cast<int>(data.orders.size())}
     { }
 
     RAMDatabase::RAMDatabase(const std::string& dataContents):
-        data(dataContents)
+        data(dataContents),
+        nextOrderId{static_cast<int>(data.orders.size())}
     { }
 
     model::PlatformSettings RAMDatabase::PlatformSettings_GetOne() const

@@ -64,6 +64,8 @@ namespace ct::api
 
     crow::response QueryController::Seat_Get(const crow::request& request, int seatId) const
     {
+        std::string cookie_header = request.get_header_value("Cookie");
+
         return utils::JsonConverterWrapper([this, seatId, userKey = session.GetUserKey(request)]() {
             return platform.GetSeat(seatId, userKey);
         });

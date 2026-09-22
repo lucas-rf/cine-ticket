@@ -142,9 +142,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ct-core\DBApi.h" />
+    <ClInclude Include="..\..\include\ct-core\DBApiBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\EventListener.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMCart.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDatabase.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDatabaseBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovie.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovieSession.h" />
@@ -153,7 +155,9 @@
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMSeat.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMTheater.h" />
     <ClInclude Include="..\..\include\ct-core\impl\TicketPlatformImpl.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\TicketPlatformImplBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\impl\TimerImpl.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\TimerImplBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\model\Movie.h" />
     <ClInclude Include="..\..\include\ct-core\model\MovieSession.h" />
     <ClInclude Include="..\..\include\ct-core\model\Order.h" />
@@ -166,15 +170,19 @@
     <ClInclude Include="..\..\include\ct-core\TicketPlatform.h" />
     <ClInclude Include="..\..\include\ct-core\TicketPlatformBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\Timer.h" />
+    <ClInclude Include="..\..\include\ct-core\TimerBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\utils\Clock.h" />
     <ClInclude Include="..\..\include\ct-core\utils\Exception.h" />
     <ClInclude Include="..\..\include\ct-core\utils\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ramdb\RAMDatabase.cpp" />
+    <ClCompile Include="..\..\src\ramdb\RAMDatabaseBuilder.cpp" />
     <ClCompile Include="..\..\src\ramdb\RAMDataStore.cpp" />
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp" />
+    <ClCompile Include="..\..\src\TicketPlatformImplBuilder.cpp" />
     <ClCompile Include="..\..\src\TimerImpl.cpp" />
+    <ClCompile Include="..\..\src\TimerImplBuilder.cpp" />
     <ClCompile Include="..\..\src\utils\Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

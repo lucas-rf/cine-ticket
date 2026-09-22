@@ -81,6 +81,9 @@
     <ClCompile Include="..\..\src\utils\json\TheaterJson.cpp">
       <Filter>Source Files\utils\json</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieJson.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ct-backend\api\CrowApp.h">
       <Filter>Header Files\ct-backend\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ct-backend\Application.h">
+      <Filter>Header Files\ct-backend</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

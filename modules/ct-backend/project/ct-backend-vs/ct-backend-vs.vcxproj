@@ -138,6 +138,7 @@
     <ClCompile Include="..\..\src\api\controllers\CommandController.cpp" />
     <ClCompile Include="..\..\src\api\controllers\QueryController.cpp" />
     <ClCompile Include="..\..\src\api\Session.cpp" />
+    <ClCompile Include="..\..\src\Application.cpp" />
     <ClCompile Include="..\..\src\utils\json\CartJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="..\..\include\ct-backend\api\controllers\QueryController.h" />
     <ClInclude Include="..\..\include\ct-backend\api\CrowApp.h" />
     <ClInclude Include="..\..\include\ct-backend\api\Session.h" />
+    <ClInclude Include="..\..\include\ct-backend\Application.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\CartJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieSessionJson.h" />
