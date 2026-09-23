@@ -10,6 +10,6 @@ namespace ct
     public:
         virtual std::unique_ptr<Timer> CreateTimer() const = 0;
 
-        virtual ~TimerBuilder() = 0 {}
+        virtual ~TimerBuilder() = default;
     };
 }

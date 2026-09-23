@@ -13,6 +13,6 @@ namespace ct
         virtual std::unique_ptr<DBApi> CreateDBApi(const std::filesystem::path& dataFilePath) const = 0;
         virtual std::unique_ptr<DBApi> CreateDBApi(const std::string& dataContents) const = 0;
 
-        virtual ~DBApiBuilder() = 0 {}
+        virtual ~DBApiBuilder() = default;
     };
 }

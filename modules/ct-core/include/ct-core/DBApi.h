@@ -35,6 +35,6 @@ namespace ct
         virtual model::Order Order_ViewDetailed(const std::string& orderKey) const = 0;
         virtual model::Order Order_CreateFromCart(int cartId, const std::string& orderKey, const std::string& userEmail) = 0;
 
-        virtual ~DBApi() = 0 {}
+        virtual ~DBApi() = default;
     };
 }

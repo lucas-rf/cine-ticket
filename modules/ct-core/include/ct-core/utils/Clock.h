@@ -15,6 +15,6 @@ namespace ct
 
         virtual time_point now() const noexcept = 0;
 
-        virtual ~Clock() = 0 { }
+        virtual ~Clock() = default;
     };
 }

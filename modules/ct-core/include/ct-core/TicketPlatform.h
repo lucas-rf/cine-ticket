@@ -28,6 +28,6 @@ namespace ct
         virtual bool DeselectSeat(int seatId, int userKey) = 0;
         virtual std::optional<model::Order> OrderCart(int userKey, const std::string& orderKey, const std::string& userEmail) = 0;
 
-        virtual ~TicketPlatform() = 0 {}
+        virtual ~TicketPlatform() = default;
     };
 }

@@ -13,6 +13,6 @@ namespace ct
     public:
         virtual std::unique_ptr<TicketPlatform> CreateTicketPlatform(DBApi& db, Timer& timer, EventListener* listener) const = 0;
 
-        virtual ~TicketPlatformBuilder() = 0 { }
+        virtual ~TicketPlatformBuilder() = default;
     };
 }

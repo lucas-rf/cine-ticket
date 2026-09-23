@@ -16,6 +16,6 @@ namespace ct
         virtual ID Set(TimePoint when, Callback&& callback) = 0;
         virtual bool Cancel(ID id) noexcept = 0;
 
-        virtual ~Timer() = 0 { }
+        virtual ~Timer() = default;
     };
 }

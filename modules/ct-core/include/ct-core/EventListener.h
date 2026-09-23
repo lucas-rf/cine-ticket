@@ -16,6 +16,6 @@ namespace ct
         virtual void CartRecreated(int cartId, int userKey) = 0;
         virtual void CartExpired(int cartId, int userKey) = 0;
 
-        virtual ~EventListener() = 0 {}
+        virtual ~EventListener() = default;
     };
 }

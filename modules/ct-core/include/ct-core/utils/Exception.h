@@ -9,7 +9,6 @@ namespace ct
     {
     public:
         CTException(std::string&& msg):
-            std::exception(msg.c_str()),
             message{std::move(msg)}
         { }
         
@@ -18,9 +17,13 @@ namespace ct
         { }
         
         CTException(CTException&& other) noexcept:
-            std::exception(other.message.c_str()),
             message(std::move(other.message))
         { }
+
+        virtual const char* what() const noexcept override
+        {
+            return message.c_str();
+        }
 
     private:
         std::string message;
