@@ -108,20 +108,12 @@
     <ClInclude Include="..\..\tests\utils\include\test-utils\MockClock.h" />
     <ClInclude Include="..\..\tests\utils\include\test-utils\ModelComparison.h" />
     <ClInclude Include="..\..\tests\utils\include\test-utils\RAMModelComparison.h" />
-    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\tests\integration\Test_TicketPlatformImpl.cpp" />
     <ClCompile Include="..\..\tests\unit\Test_RAMDatabase.cpp" />
     <ClCompile Include="..\..\tests\unit\Test_RAMDataStore.cpp" />
     <ClCompile Include="..\..\tests\utils\src\DatabaseData.cpp" />
-    <ClCompile Include="test.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
