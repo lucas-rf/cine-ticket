@@ -34,6 +34,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{84a5ca85-1949-45a1-bb36-dfe0b936f8f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ct-core\impl\utils">
+      <UniqueIdentifier>{d3a8df46-4e2d-4999-b2de-ad86a3b98bae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ct-core\TicketPlatform.h">
@@ -135,6 +138,9 @@
     <ClInclude Include="..\..\include\ct-core\DBApiBuilder.h">
       <Filter>Header Files\ct-core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ct-core\impl\utils\ClockImpl.h">
+      <Filter>Header Files\ct-core\impl\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\TicketPlatformImpl.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ramdb\RAMDatabaseBuilder.cpp">
       <Filter>Source Files\ramdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\ClockImpl.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

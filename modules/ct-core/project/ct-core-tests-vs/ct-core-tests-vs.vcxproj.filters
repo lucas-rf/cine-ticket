@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="..\..\tests\unit\Test_RAMDatabase.cpp">
+      <Filter>Tests\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tests\unit\Test_RAMDataStore.cpp">
+      <Filter>Tests\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tests\utils\src\DatabaseData.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tests\integration\Test_TicketPlatformImpl.cpp">
+      <Filter>Tests\integration</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\tests\utils\include\test-utils\DatabaseData.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tests\utils\include\test-utils\ModelComparison.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tests\utils\include\test-utils\MockClock.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tests\utils\include\test-utils\RAMModelComparison.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{092e9cdf-1837-4468-a2dd-373325c81c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{314477cc-6b60-4981-bd00-fa73b7a7a84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{0662435f-a6bf-4572-bb8a-94efd1f86d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests\unit">
+      <UniqueIdentifier>{dedda0d4-f219-45f2-8fdc-6945648d71ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{b4605991-37cd-41cc-8cb1-49eae871d749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{cec4885c-360f-4b76-ab4f-58a924266954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests\integration">
+      <UniqueIdentifier>{8f146e9c-25a8-44c7-92fd-93c7e9efecb7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

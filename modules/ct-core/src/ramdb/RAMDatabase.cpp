@@ -5,12 +5,14 @@
 
 namespace ct::impl
 {
-    RAMDatabase::RAMDatabase(const std::filesystem::path& dataFilePath):
+    RAMDatabase::RAMDatabase(const std::filesystem::path& dataFilePath, const Clock& clock):
+        clock{clock},
         data(dataFilePath),
         nextOrderId{static_cast<int>(data.orders.size())}
     { }
 
-    RAMDatabase::RAMDatabase(const std::string& dataContents):
+    RAMDatabase::RAMDatabase(const std::string& dataContents, const Clock& clock):
+        clock{clock},
         data(dataContents),
         nextOrderId{static_cast<int>(data.orders.size())}
     { }
@@ -115,7 +117,7 @@ namespace ct::impl
         if(iter == cartsByUserKey.end())
         {
             auto cartId = nextCartId++;
-            auto [idIter, addedById] = cartsById.try_emplace(cartId, cartId, -1, userKey, Clock::now());
+            auto [idIter, addedById] = cartsById.try_emplace(cartId, cartId, -1, userKey, clock.now() + data.settings.cartDuration);
             auto [keyIter, addedByKey] = cartsByUserKey.try_emplace(userKey, &idIter->second);
             iter = keyIter;
             created = true;
@@ -185,7 +187,7 @@ namespace ct::impl
         }
 
         if(cart.idxSeats.empty())
-            cart.expirationTime = Clock::now() + data.settings.cartDuration;
+            cart.expirationTime = clock.now() + data.settings.cartDuration;
 
         seat.cartId = cart.id;
         seat.userKey = cart.userKey;
@@ -258,7 +260,7 @@ namespace ct::impl
                 throw CartNotFoundException(cartId);
 
             auto& cart = find->second;
-            auto emp = data.orders.try_emplace(orderKey, nextOrderId++, cart.movieSessionId, userEmail, orderKey, Clock::now());
+            auto emp = data.orders.try_emplace(orderKey, nextOrderId++, cart.movieSessionId, userEmail, orderKey, clock.now());
             order = &emp.first->second;
 
             order->seats.reserve(cart.idxSeats.size());

@@ -4,6 +4,7 @@
 #include <ct-core/DBApi.h>
 #include <ct-core/Timer.h>
 #include <ct-core/EventListener.h>
+#include <ct-core/impl/utils/ClockImpl.h>
 #include <mutex>
 #include <unordered_set>
 #include <atomic>
@@ -13,10 +14,10 @@ namespace ct::impl
     class TicketPlatformImpl: public TicketPlatform
     {
     public:
-        TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener);
+        TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener, const Clock& clock = ClockImpl::Instance);
 
         virtual void SetMovieSessionEvents(int movieSessionId, bool active) override;
-        virtual void SetCartEvents(int userKey, bool active) override;
+        virtual void SetCartEvents(bool active) override;
 
         virtual model::Movie GetMovie(int movieId) const override;
         virtual model::Movie ViewMovieDetails(int movieId, int day) const override;
@@ -41,6 +42,7 @@ namespace ct::impl
             model::Cart dbCart;
         };
 
+        const Clock& clock;
         DBApi& db;
         Timer& timer;
         EventListener* const listener;

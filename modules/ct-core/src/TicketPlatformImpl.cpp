@@ -4,7 +4,8 @@
 
 namespace ct::impl
 {
-    TicketPlatformImpl::TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener):
+    TicketPlatformImpl::TicketPlatformImpl(DBApi& db, Timer& timer, EventListener* listener, const Clock& clock):
+        clock{clock},
         db{db},
         timer{timer},
         listener{listener},
@@ -23,7 +24,7 @@ namespace ct::impl
             activeEvents.erase(movieSessionId);
     }
 
-    void TicketPlatformImpl::SetCartEvents(int userKey, bool active)
+    void TicketPlatformImpl::SetCartEvents(bool active)
     {
         if(!listener)
             return;
@@ -243,7 +244,7 @@ namespace ct::impl
             if(activeCart->expired)
                 return;
 
-            if(activeCart->dbCart.expirationTime > Clock::now())
+            if(activeCart->dbCart.expirationTime > clock.now())
                 return;
 
             activeCart->expired = true;

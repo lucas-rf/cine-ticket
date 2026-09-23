@@ -56,7 +56,7 @@ namespace ct::impl
             if(!active)
                 break;
 
-            if(queue.empty() || queue.begin()->first > Clock::now())
+            if(queue.empty() || queue.begin()->first > Clock::ref_clock::now())
                 continue;
 
             auto item = queue.extract(queue.begin());

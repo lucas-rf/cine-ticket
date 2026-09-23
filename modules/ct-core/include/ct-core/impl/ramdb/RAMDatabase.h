@@ -3,6 +3,7 @@
 #include <ct-core/DBApi.h>
 #include <ct-core/impl/ramdb/RAMDataStore.h>
 #include <ct-core/impl/ramdb/RAMCart.h>
+#include <ct-core/impl/utils/ClockImpl.h>
 #include <vector>
 #include <unordered_map>
 #include <mutex>
@@ -13,8 +14,8 @@ namespace ct::impl
     class RAMDatabase: public DBApi
     {
     public:
-        explicit RAMDatabase(const std::filesystem::path& dataFilePath);
-        explicit RAMDatabase(const std::string& dataContents);
+        explicit RAMDatabase(const std::filesystem::path& dataFilePath, const Clock& clock = ClockImpl::Instance);
+        explicit RAMDatabase(const std::string& dataContents, const Clock& clock = ClockImpl::Instance);
 
         virtual model::PlatformSettings PlatformSettings_GetOne() const override;
 
@@ -40,6 +41,7 @@ namespace ct::impl
 
     private:
         mutable std::mutex cartLock;
+        const Clock& clock;
         RAMDataStore data;
         std::unordered_map<int, RAMCart> cartsById;
         std::unordered_map<int, RAMCart*> cartsByUserKey;

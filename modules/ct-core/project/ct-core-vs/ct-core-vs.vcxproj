@@ -158,6 +158,7 @@
     <ClInclude Include="..\..\include\ct-core\impl\TicketPlatformImplBuilder.h" />
     <ClInclude Include="..\..\include\ct-core\impl\TimerImpl.h" />
     <ClInclude Include="..\..\include\ct-core\impl\TimerImplBuilder.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\utils\ClockImpl.h" />
     <ClInclude Include="..\..\include\ct-core\model\Movie.h" />
     <ClInclude Include="..\..\include\ct-core\model\MovieSession.h" />
     <ClInclude Include="..\..\include\ct-core\model\Order.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="..\..\src\TicketPlatformImplBuilder.cpp" />
     <ClCompile Include="..\..\src\TimerImpl.cpp" />
     <ClCompile Include="..\..\src\TimerImplBuilder.cpp" />
+    <ClCompile Include="..\..\src\utils\ClockImpl.cpp" />
     <ClCompile Include="..\..\src\utils\Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

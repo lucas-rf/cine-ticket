@@ -13,7 +13,7 @@ namespace ct
     {
     public:
         virtual void SetMovieSessionEvents(int movieSessionId, bool active) = 0;
-        virtual void SetCartEvents(int userKey, bool active) = 0;
+        virtual void SetCartEvents(bool active) = 0;
 
         virtual model::Movie GetMovie(int movieId) const = 0;
         virtual model::Movie ViewMovieDetails(int movieId, int day) const = 0;
