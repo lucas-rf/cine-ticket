@@ -1,5 +1,3 @@
-#pragma once
-
 #include <ct-backend/Application.h>
 #include <ct-core/utils/Exception.h>
 #include <argparse/argparse.hpp>
