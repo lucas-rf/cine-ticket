@@ -10,6 +10,6 @@ namespace ct::impl
         int column;
         int cartId;
         int userKey;
-        int orderId;
+        int bookingId;
     };
 }

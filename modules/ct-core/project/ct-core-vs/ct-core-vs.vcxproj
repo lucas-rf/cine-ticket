@@ -150,7 +150,7 @@
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovie.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMMovieSession.h" />
-    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMOrder.h" />
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMBooking.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMRoom.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMSeat.h" />
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMTheater.h" />
@@ -161,7 +161,7 @@
     <ClInclude Include="..\..\include\ct-core\impl\utils\ClockImpl.h" />
     <ClInclude Include="..\..\include\ct-core\model\Movie.h" />
     <ClInclude Include="..\..\include\ct-core\model\MovieSession.h" />
-    <ClInclude Include="..\..\include\ct-core\model\Order.h" />
+    <ClInclude Include="..\..\include\ct-core\model\Booking.h" />
     <ClInclude Include="..\..\include\ct-core\model\PlatformSettings.h" />
     <ClInclude Include="..\..\include\ct-core\model\Room.h" />
     <ClInclude Include="..\..\include\ct-core\model\RoomSession.h" />

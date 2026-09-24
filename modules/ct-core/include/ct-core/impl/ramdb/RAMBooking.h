@@ -5,13 +5,13 @@
 
 namespace ct::impl
 {
-    struct RAMOrder
+    struct RAMBooking
     {
         int id;
         int movieSessionId;
         std::string userEmail;
-        std::string orderKey;
-        Clock::time_point orderTime;
+        std::string bookingKey;
+        Clock::time_point bookingTime;
         std::vector<int> seats;
     };
 }

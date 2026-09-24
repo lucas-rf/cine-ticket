@@ -210,7 +210,7 @@ namespace ct::test
         ASSERT_EQ(updatedCartB.first.seats.size(), 0);
     }
 
-    TEST_F(TestRAMDatabaseReadWrite, CartTryAddSeat_AddSeatAlreadyOrdered)
+    TEST_F(TestRAMDatabaseReadWrite, CartTryAddSeat_AddSeatAlreadyBooked)
     {
         auto [cart, created] = db->Cart_GetOrCreate(555);
         auto resultingCart = db->Cart_TryAddSeat(cart.id, 3);

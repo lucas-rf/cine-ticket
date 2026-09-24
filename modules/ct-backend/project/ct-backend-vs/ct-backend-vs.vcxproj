@@ -143,7 +143,7 @@
     <ClCompile Include="..\..\src\utils\json\CartJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp" />
-    <ClCompile Include="..\..\src\utils\json\OrderJson.cpp" />
+    <ClCompile Include="..\..\src\utils\json\BookingJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\RoomJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\RoomSessionJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\SeatJson.cpp" />
@@ -169,7 +169,7 @@
     <ClInclude Include="..\..\include\ct-backend\utils\json\CartJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieSessionJson.h" />
-    <ClInclude Include="..\..\include\ct-backend\utils\json\OrderJson.h" />
+    <ClInclude Include="..\..\include\ct-backend\utils\json\BookingJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\RoomJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\RoomSessionJson.h" />
     <ClInclude Include="..\..\include\ct-backend\utils\json\SeatJson.h" />

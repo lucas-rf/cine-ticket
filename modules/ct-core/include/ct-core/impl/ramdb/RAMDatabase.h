@@ -36,8 +36,8 @@ namespace ct::impl
 
         virtual model::Seat Seat_Get(int seatId, int userKey) const override;
 
-        virtual model::Order Order_ViewDetailed(const std::string& orderKey) const override;
-        virtual model::Order Order_CreateFromCart(int cartId, const std::string& orderKey, const std::string& userEmail) override;
+        virtual model::Booking Booking_ViewDetailed(const std::string& bookingKey) const override;
+        virtual model::Booking Booking_CreateFromCart(int cartId, const std::string& bookingKey, const std::string& userEmail) override;
 
     private:
         mutable std::mutex cartLock;
@@ -46,11 +46,11 @@ namespace ct::impl
         std::unordered_map<int, RAMCart> cartsById;
         std::unordered_map<int, RAMCart*> cartsByUserKey;
         int nextCartId{0};
-        int nextOrderId;
+        int nextBookingId;
         
         std::vector<model::Theater> expandTheaters(const std::unordered_map<int, std::unordered_map<int, std::vector<int>>>& theatersToRoomsToSessions) const;
         model::Cart generateModelCart(const RAMCart& ramCart, bool includeSeats) const;
-        model::Order generateModelOrder(const RAMOrder& ramOrder) const;
+        model::Booking generateBookingModel(const RAMBooking& ramBooking) const;
         static model::Movie generateModelMovie(const RAMMovie& ramMovie, std::vector<model::Theater>&& theaters);
         static model::Seat generateSeatModel(const RAMSeat& ramSeat, int userKey);
         std::vector<model::Seat> generateSeatModels(const std::vector<int>& seatsIds, int userKey) const;

@@ -13,7 +13,7 @@ namespace ct::api
 
         crow::response SelectSeat(const crow::request& request, int seatId);
         crow::response DeselectSeat(const crow::request& request, int seatId);
-        crow::response OrderCart(const crow::request& request, const std::string& userEmail);
+        crow::response BookCart(const crow::request& request, const std::string& userEmail);
 
     private:
         TicketPlatform& platform;
@@ -21,6 +21,6 @@ namespace ct::api
         Session& session;
         std::mt19937 randGen;
 
-        std::string generateOrderKey();
+        std::string generateBookingKey();
     };
 }

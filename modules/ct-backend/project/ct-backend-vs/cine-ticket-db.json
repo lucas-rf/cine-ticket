@@ -59,9 +59,9 @@
                 "time-hour": 17,
                 "time-minute": 10,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "G63RS1",
+                    "booking-key": "G63RS1",
                     "positions": [11, 12]
                   }
                 ]
@@ -71,9 +71,9 @@
                 "time-hour": 20,
                 "time-minute": 30,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "J876RT",
+                    "booking-key": "J876RT",
                     "positions": [7, 8, 9]
                   }
                 ]
@@ -83,9 +83,9 @@
                 "time-hour": 23,
                 "time-minute": 20,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "HY76T4",
+                    "booking-key": "HY76T4",
                     "positions": [16, 17]
                   }
                 ]
@@ -104,9 +104,9 @@
                 "time-hour": 14,
                 "time-minute": 40,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "5T67UI",
+                    "booking-key": "5T67UI",
                     "positions": [0, 1, 2, 3]
                   }
                 ]
@@ -116,9 +116,9 @@
                 "time-hour": 18,
                 "time-minute": 30,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "FG5Y79",
+                    "booking-key": "FG5Y79",
                     "positions": [10, 11]
                   }
                 ]
@@ -128,9 +128,9 @@
                 "time-hour": 22,
                 "time-minute": 20,
                 "price": 12.5,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "HH2G6T",
+                    "booking-key": "HH2G6T",
                     "positions": [6, 7, 8]
                   }
                 ]
@@ -154,9 +154,9 @@
                 "time-hour": 16,
                 "time-minute": 30,
                 "price": 16.2,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "JU7I99",
+                    "booking-key": "JU7I99",
                     "positions": [10, 11]
                   }
                 ]
@@ -166,9 +166,9 @@
                 "time-hour": 20,
                 "time-minute": 0,
                 "price": 16.2,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "989L9U",
+                    "booking-key": "989L9U",
                     "positions": [5, 6, 7, 8]
                   }
                 ]
@@ -187,9 +187,9 @@
                 "time-hour": 19,
                 "time-minute": 30,
                 "price": 16.2,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "1E3G66",
+                    "booking-key": "1E3G66",
                     "positions": [17, 18]
                   }
                 ]
@@ -199,9 +199,9 @@
                 "time-hour": 22,
                 "time-minute": 40,
                 "price": 16.2,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "K8ZD4G",
+                    "booking-key": "K8ZD4G",
                     "positions": [11, 12]
                   }
                 ]
@@ -220,9 +220,9 @@
                 "time-hour": 13,
                 "time-minute": 50,
                 "price": 19.9,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "GHT65A",
+                    "booking-key": "GHT65A",
                     "positions": [1, 2, 3, 4]
                   }
                 ]
@@ -232,9 +232,9 @@
                 "time-hour": 16,
                 "time-minute": 30,
                 "price": 19.9,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "YY4DE2",
+                    "booking-key": "YY4DE2",
                     "positions": [13, 14]
                   }
                 ]
@@ -244,9 +244,9 @@
                 "time-hour": 19,
                 "time-minute": 10,
                 "price": 19.9,
-                "orders": [
+                "bookings": [
                   {
-                    "order-key": "M5GH76",
+                    "booking-key": "M5GH76",
                     "positions": [15, 16, 17]
                   }
                 ]
@@ -257,7 +257,7 @@
       ]
     }
   ],
-  "orders": [
+  "bookings": [
     {
       "key": "G63RS1",
       "time": "1995-03-15 14:12:35",

@@ -7,7 +7,7 @@ namespace ct::model
         {Seat::FREE, "FREE"},
         {Seat::SELECTED_BY_CURRENT_USER, "SELECTED_BY_CURRENT_USER"},
         {Seat::SELECTED_BY_OTHER_USER, "SELECTED_BY_OTHER_USER"},
-        {Seat::ORDERED, "ORDERED"},
+        {Seat::BOOKED, "BOOKED"},
     })
 
     void to_json(nlohmann::json& j, const Seat& seat)
@@ -19,7 +19,7 @@ namespace ct::model
             {"column", seat.column},
             {"state", seat.state},
             {"cartId", seat.cartId},
-            {"orderId", seat.orderId}
+            {"bookingId", seat.bookingId}
         };
     }
 
@@ -31,6 +31,6 @@ namespace ct::model
         j.at("column").get_to(seat.column);
         j.at("state").get_to(seat.state);
         j.at("cartId").get_to(seat.cartId);
-        j.at("orderId").get_to(seat.orderId);
+        j.at("bookingId").get_to(seat.bookingId);
     }
 }

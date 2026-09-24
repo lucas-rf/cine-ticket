@@ -16,7 +16,7 @@ target_sources(ct-backend
     src/utils/json/CartJson.cpp
     src/utils/json/MovieJson.cpp
     src/utils/json/MovieSessionJson.cpp
-    src/utils/json/OrderJson.cpp
+    src/utils/json/BookingJson.cpp
     src/utils/json/RoomJson.cpp
     src/utils/json/RoomSessionJson.cpp
     src/utils/json/SeatJson.cpp

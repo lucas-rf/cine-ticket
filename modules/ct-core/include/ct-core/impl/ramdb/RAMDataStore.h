@@ -6,7 +6,7 @@
 #include <ct-core/impl/ramdb/RAMRoom.h>
 #include <ct-core/impl/ramdb/RAMTheater.h>
 #include <ct-core/impl/ramdb/RAMSeat.h>
-#include <ct-core/impl/ramdb/RAMOrder.h>
+#include <ct-core/impl/ramdb/RAMBooking.h>
 #include <vector>
 #include <unordered_map>
 #include <filesystem>
@@ -27,6 +27,6 @@ namespace ct::impl
         std::vector<RAMRoom> rooms;
         std::vector<RAMMovieSession> movieSessions;
         std::vector<RAMSeat> seats;
-        std::unordered_map<std::string, RAMOrder> orders;
+        std::unordered_map<std::string, RAMBooking> bookings;
     };
 }

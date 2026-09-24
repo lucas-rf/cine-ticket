@@ -8,13 +8,13 @@ namespace ct::impl
     RAMDatabase::RAMDatabase(const std::filesystem::path& dataFilePath, const Clock& clock):
         clock{clock},
         data(dataFilePath),
-        nextOrderId{static_cast<int>(data.orders.size())}
+        nextBookingId{static_cast<int>(data.bookings.size())}
     { }
 
     RAMDatabase::RAMDatabase(const std::string& dataContents, const Clock& clock):
         clock{clock},
         data(dataContents),
-        nextOrderId{static_cast<int>(data.orders.size())}
+        nextBookingId{static_cast<int>(data.bookings.size())}
     { }
 
     model::PlatformSettings RAMDatabase::PlatformSettings_GetOne() const
@@ -176,7 +176,7 @@ namespace ct::impl
         auto& cart = find->second;
         auto& seat = data.seats[seatId];
 
-        if(seat.cartId >= 0 || seat.orderId >= 0)
+        if(seat.cartId >= 0 || seat.bookingId >= 0)
             return {};
 
         if(cart.movieSessionId >= 0 && seat.movieSessionId != cart.movieSessionId)
@@ -233,24 +233,24 @@ namespace ct::impl
         return generateSeatModel(data.seats[seatId], userKey);
     }
 
-    model::Order RAMDatabase::Order_ViewDetailed(const std::string& orderKey) const
+    model::Booking RAMDatabase::Booking_ViewDetailed(const std::string& bookingKey) const
     {
-        const RAMOrder* order;
+        const RAMBooking* booking;
 
         {
             std::lock_guard<std::mutex> guard{cartLock};
-            auto iter = data.orders.find(orderKey);
-            if(iter == data.orders.end())
-                throw OrderNotFoundException(orderKey);
-            order = &iter->second;
+            auto iter = data.bookings.find(bookingKey);
+            if(iter == data.bookings.end())
+                throw BookingNotFoundException(bookingKey);
+            booking = &iter->second;
         }
 
-        return generateModelOrder(*order);
+        return generateBookingModel(*booking);
     }
 
-    model::Order RAMDatabase::Order_CreateFromCart(int cartId, const std::string& orderKey, const std::string& userEmail)
+    model::Booking RAMDatabase::Booking_CreateFromCart(int cartId, const std::string& bookingKey, const std::string& userEmail)
     {
-        RAMOrder* order;
+        RAMBooking* booking;
 
         {
             std::lock_guard<std::mutex> guard{cartLock};
@@ -260,25 +260,25 @@ namespace ct::impl
                 throw CartNotFoundException(cartId);
 
             auto& cart = find->second;
-            auto emp = data.orders.try_emplace(orderKey, nextOrderId++, cart.movieSessionId, userEmail, orderKey, clock.now());
-            order = &emp.first->second;
+            auto emp = data.bookings.try_emplace(bookingKey, nextBookingId++, cart.movieSessionId, userEmail, bookingKey, clock.now());
+            booking = &emp.first->second;
 
-            order->seats.reserve(cart.idxSeats.size());
+            booking->seats.reserve(cart.idxSeats.size());
             for(auto seatId : cart.idxSeats)
             {
                 auto& seat = data.seats[seatId];
                 seat.cartId = -1;
                 seat.userKey = -1;
-                seat.orderId = order->id;
-                order->seats.push_back(seatId);
+                seat.bookingId = booking->id;
+                booking->seats.push_back(seatId);
             }
-            std::sort(order->seats.begin(), order->seats.end());
+            std::sort(booking->seats.begin(), booking->seats.end());
 
             cartsByUserKey.erase(cart.userKey);
             cartsById.erase(cartId);
         }
 
-        return generateModelOrder(*order);
+        return generateBookingModel(*booking);
     }
 
     std::vector<model::Theater> RAMDatabase::expandTheaters(const std::unordered_map<int, std::unordered_map<int, std::vector<int>>>& theatersToRoomsToSessions) const
@@ -343,16 +343,16 @@ namespace ct::impl
         };
     }
 
-    model::Order RAMDatabase::generateModelOrder(const RAMOrder& ramOrder) const
+    model::Booking RAMDatabase::generateBookingModel(const RAMBooking& ramBooking) const
     {
-        return model::Order{
-            ramOrder.id,
-            ramOrder.movieSessionId,
-            ramOrder.userEmail,
-            ramOrder.orderKey,
-            ramOrder.orderTime,
-            static_cast<int>(ramOrder.seats.size()),
-            generateSeatModels(ramOrder.seats, -1)
+        return model::Booking{
+            ramBooking.id,
+            ramBooking.movieSessionId,
+            ramBooking.userEmail,
+            ramBooking.bookingKey,
+            ramBooking.bookingTime,
+            static_cast<int>(ramBooking.seats.size()),
+            generateSeatModels(ramBooking.seats, -1)
         };
     }
 
@@ -373,8 +373,8 @@ namespace ct::impl
 
     model::Seat RAMDatabase::generateSeatModel(const RAMSeat& ramSeat, int userKey)
     {
-        model::Seat::State state = ramSeat.orderId >= 0 ?
-            model::Seat::ORDERED :
+        model::Seat::State state = ramSeat.bookingId >= 0 ?
+            model::Seat::BOOKED :
             (ramSeat.cartId >= 0 ?
                 (ramSeat.userKey == userKey ?
                     model::Seat::SELECTED_BY_CURRENT_USER :
@@ -388,7 +388,7 @@ namespace ct::impl
             ramSeat.column,
             state,
             ramSeat.cartId,
-            ramSeat.orderId,
+            ramSeat.bookingId,
         };
     }
 

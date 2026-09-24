@@ -17,7 +17,7 @@ namespace ct::api
         crow::response RoomSession_ViewDetailed(const crow::request& request, int movieSessionId) const;
         crow::response Cart_ViewDetailed(const crow::request& request) const;
         crow::response Seat_Get(const crow::request& request, int seatId) const;
-        crow::response Order_ViewDetailed(const crow::request& request, const std::string& orderKey) const;
+        crow::response Booking_ViewDetailed(const crow::request& request, const std::string& bookingKey) const;
 
     private:
         TicketPlatform& platform;

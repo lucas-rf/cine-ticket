@@ -7,13 +7,13 @@
 
 namespace ct::model
 {
-    struct Order
+    struct Booking
     {
         int id;
         int movieSessionId;
         std::string userEmail;
-        std::string orderKey;
-        Clock::time_point orderTime;
+        std::string bookingKey;
+        Clock::time_point bookingTime;
         int seatCount;
         std::vector<Seat> seats;
     };

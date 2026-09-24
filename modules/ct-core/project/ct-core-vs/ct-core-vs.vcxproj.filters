@@ -84,7 +84,7 @@
     <ClInclude Include="..\..\include\ct-core\model\PlatformSettings.h">
       <Filter>Header Files\ct-core\model</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ct-core\model\Order.h">
+    <ClInclude Include="..\..\include\ct-core\model\Booking.h">
       <Filter>Header Files\ct-core\model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ct-core\utils\Exception.h">
@@ -114,7 +114,7 @@
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMCart.h">
       <Filter>Header Files\ct-core\impl\ramdb</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMOrder.h">
+    <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMBooking.h">
       <Filter>Header Files\ct-core\impl\ramdb</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ct-core\impl\ramdb\RAMDataStore.h">

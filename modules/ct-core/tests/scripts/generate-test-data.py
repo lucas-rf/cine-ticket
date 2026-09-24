@@ -12,8 +12,8 @@ def generate_data(
     session_count,
     room_rows,
     room_columns,
-    order_seat_min,
-    order_seat_max):
+    booking_seat_min,
+    booking_seat_max):
   
   movies = [{
       "key": f"movie-{movie_id}-key",
@@ -52,31 +52,31 @@ def generate_data(
           "time-hour": theater_id * 1000 + r * 100 + d * 10 + s // movie_count,
           "time-minute": get_next_session_id(),
           "price": theater_id * 1000 + r * 100 + d * 10 + s // movie_count + 0.1 * (s % movie_count),
-          "orders": []
+          "bookings": []
         } for s in range(movie_count * session_count)
       ] for d in range(day_count)]
     } for r in range(room_count)]
   } for theater_id in range(theater_count)]
 
-  orders = [{
-    "key": f"order-{order_id}-key",
-    "time": f"2{order_id:03d}-01-01 10:00:00",
-    "email": f"order-{order_id}-email"
-  } for order_id in range(theater_count * room_count * day_count * movie_count * session_count * room_rows)]
+  bookings = [{
+    "key": f"booking-{booking_id}-key",
+    "time": f"2{booking_id:03d}-01-01 10:00:00",
+    "email": f"booking-{booking_id}-email"
+  } for booking_id in range(theater_count * room_count * day_count * movie_count * session_count * room_rows)]
 
-  next_order_id = 0
+  next_booking_id = 0
   for theater in theaters:
     for room in theater["rooms"]:
       for day in room["sessions"]:
         for session in day:
           for row in range(room_rows):
-            seat_count = random.randint(order_seat_min, order_seat_max)
+            seat_count = random.randint(booking_seat_min, booking_seat_max)
             start = random.randint(0, room_columns - seat_count)
-            session["orders"].append({
-              "order-key": f"order-{next_order_id}-key",
+            session["bookings"].append({
+              "booking-key": f"booking-{next_booking_id}-key",
               "positions": [row * room_columns + start + p for p in range(seat_count)]
             })
-            next_order_id += 1
+            next_booking_id += 1
   
   return {
       "settings": {
@@ -84,7 +84,7 @@ def generate_data(
       },
       "movies": movies,
       "theaters": theaters,
-      "orders" : orders
+      "bookings" : bookings
   }
 
 def main():
@@ -98,8 +98,8 @@ def main():
   parser.add_argument("--session-count", type=int, default=2, help="Number of sessions per movie per day")
   parser.add_argument("--room-rows", type=int, default=2, help="Number of seat rows in the room")
   parser.add_argument("--room-columns", type=int, default=5, help="Number of seats per row in the room")
-  parser.add_argument("--order-seat-min", type=int, default=1, help="Minimum number of seats per order")
-  parser.add_argument("--order-seat-max", type=int, default=4, help="Maximum number of seats per order")
+  parser.add_argument("--booking-seat-min", type=int, default=1, help="Minimum number of seats per booking")
+  parser.add_argument("--booking-seat-max", type=int, default=4, help="Maximum number of seats per booking")
 
   args = parser.parse_args()
 
@@ -112,8 +112,8 @@ def main():
     args.session_count,
     args.room_rows,
     args.room_columns,
-    args.order_seat_min,
-    args.order_seat_max
+    args.booking_seat_min,
+    args.booking_seat_max
   )
 
   with open(args.output_file, "w", encoding="utf-8") as file:

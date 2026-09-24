@@ -66,7 +66,7 @@
     <ClCompile Include="..\..\src\utils\json\MovieSessionJson.cpp">
       <Filter>Source Files\utils\json</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\json\OrderJson.cpp">
+    <ClCompile Include="..\..\src\utils\json\BookingJson.cpp">
       <Filter>Source Files\utils\json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\utils\json\RoomJson.cpp">
@@ -107,7 +107,7 @@
     <ClInclude Include="..\..\include\ct-backend\utils\json\MovieSessionJson.h">
       <Filter>Header Files\utils\json</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ct-backend\utils\json\OrderJson.h">
+    <ClInclude Include="..\..\include\ct-backend\utils\json\BookingJson.h">
       <Filter>Header Files\utils\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ct-backend\utils\json\RoomJson.h">

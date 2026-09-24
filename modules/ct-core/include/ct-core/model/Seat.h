@@ -9,7 +9,7 @@ namespace ct::model
             FREE,
             SELECTED_BY_CURRENT_USER,
             SELECTED_BY_OTHER_USER,
-            ORDERED,
+            BOOKED,
             INVALID,
         };
 
@@ -19,6 +19,6 @@ namespace ct::model
         int column;
         State state;
         int cartId;
-        int orderId;
+        int bookingId;
     };
 }

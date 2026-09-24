@@ -30,16 +30,16 @@ namespace ct::impl
             moviesByKey.try_emplace(movie["key"], data.movies.back());
         }
 
-        auto& orders = content["orders"];
-        int nextOrderId = 0;
-        for(auto& order : orders)
-            data.orders.try_emplace(
-                order["key"],
-                nextOrderId++,
+        auto& bookings = content["bookings"];
+        int nextBookingId = 0;
+        for(auto& booking : bookings)
+            data.bookings.try_emplace(
+                booking["key"],
+                nextBookingId++,
                 -1,
-                order["email"],
-                order["key"],
-                utils::StrToTimePoint(order["time"])
+                booking["email"],
+                booking["key"],
+                utils::StrToTimePoint(booking["time"])
             );
 
         auto& theaters = content["theaters"];
@@ -96,16 +96,16 @@ namespace ct::impl
                                     -1
                                 });
 
-                        for(auto& sessionOrder : session["orders"])
+                        for(auto& sessionBooking : session["bookings"])
                         {
-                            auto& order = data.orders.at(sessionOrder["order-key"]);
-                            order.movieSessionId = ramSession.id;
+                            auto& booking = data.bookings.at(sessionBooking["booking-key"]);
+                            booking.movieSessionId = ramSession.id;
 
-                            for(auto position : sessionOrder["positions"])
+                            for(auto position : sessionBooking["positions"])
                             {
                                 auto seatId = nextSeatId + position.get<int>();
-                                order.seats.push_back(seatId);
-                                data.seats[seatId].orderId = order.id;
+                                booking.seats.push_back(seatId);
+                                data.seats[seatId].bookingId = booking.id;
                             }
                         }
 

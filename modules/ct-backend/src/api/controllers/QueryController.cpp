@@ -2,7 +2,7 @@
 #include <ct-backend/utils/json/CartJson.h>
 #include <ct-backend/utils/json/MovieJson.h>
 #include <ct-backend/utils/json/MovieSessionJson.h>
-#include <ct-backend/utils/json/OrderJson.h>
+#include <ct-backend/utils/json/BookingJson.h>
 #include <ct-backend/utils/json/RoomJson.h>
 #include <ct-backend/utils/json/RoomSessionJson.h>
 #include <ct-backend/utils/json/SeatJson.h>
@@ -25,7 +25,7 @@ namespace ct::api
         CROW_ROUTE(app, "/roomSession/<int>")(std::bind(&QueryController::RoomSession_ViewDetailed, this, _1, _2));
         CROW_ROUTE(app, "/cart")(std::bind(&QueryController::Cart_ViewDetailed, this, _1));
         CROW_ROUTE(app, "/seat/<int>")(std::bind(&QueryController::Seat_Get, this, _1, _2));
-        CROW_ROUTE(app, "/order/<string>")(std::bind(&QueryController::Order_ViewDetailed, this, _1, _2));
+        CROW_ROUTE(app, "/booking/<string>")(std::bind(&QueryController::Booking_ViewDetailed, this, _1, _2));
     }
 
     crow::response QueryController::Movie_Get(const crow::request& request, int movieId) const
@@ -71,9 +71,9 @@ namespace ct::api
         });
     }
 
-    crow::response QueryController::Order_ViewDetailed(const crow::request& request, const std::string& orderKey) const
+    crow::response QueryController::Booking_ViewDetailed(const crow::request& request, const std::string& bookingKey) const
     {
-        return utils::JsonConverterWrapper([this, orderKey]() { return platform.ViewOrderDetails(orderKey); });
+        return utils::JsonConverterWrapper([this, bookingKey]() { return platform.ViewBookingDetails(bookingKey); });
     }
 
 }

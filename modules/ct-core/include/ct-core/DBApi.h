@@ -3,7 +3,7 @@
 #include <ct-core/model/PlatformSettings.h>
 #include <ct-core/model/Movie.h>
 #include <ct-core/model/Cart.h>
-#include <ct-core/model/Order.h>
+#include <ct-core/model/Booking.h>
 #include <ct-core/model/RoomSession.h>
 #include <vector>
 #include <optional>
@@ -32,8 +32,8 @@ namespace ct
 
         virtual model::Seat Seat_Get(int seatId, int userKey) const = 0;
 
-        virtual model::Order Order_ViewDetailed(const std::string& orderKey) const = 0;
-        virtual model::Order Order_CreateFromCart(int cartId, const std::string& orderKey, const std::string& userEmail) = 0;
+        virtual model::Booking Booking_ViewDetailed(const std::string& bookingKey) const = 0;
+        virtual model::Booking Booking_CreateFromCart(int cartId, const std::string& bookingKey, const std::string& userEmail) = 0;
 
         virtual ~DBApi() = default;
     };

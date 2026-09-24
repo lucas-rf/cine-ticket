@@ -60,7 +60,7 @@ namespace ct
         virtual void SeatSelected(const model::Seat& seat, int userKey) override;
         virtual void SeatDeselected(const model::Seat& seat, int userKey) override;
         virtual void SeatsDeselected(const std::vector<model::Seat>& seats, int userKey) override;
-        virtual void SeatsOrdered(const std::vector<model::Seat>& seats, int userKey) override;
+        virtual void SeatsBooked(const std::vector<model::Seat>& seats, int userKey) override;
         WSConnList getConnectionList(int movieSessionId);
         void sendSeats(const std::vector<model::Seat>& seats, const WSConnList& conns);
 

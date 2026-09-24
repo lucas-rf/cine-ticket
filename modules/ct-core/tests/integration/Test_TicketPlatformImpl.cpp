@@ -54,9 +54,9 @@ namespace ct::test
             calls_SeatsDeselected.emplace_back(seats, userKey);
         }
 
-        virtual void SeatsOrdered(const std::vector<model::Seat>& seats, int userKey) override
+        virtual void SeatsBooked(const std::vector<model::Seat>& seats, int userKey) override
         {
-            calls_SeatsOrdered.emplace_back(seats, userKey);
+            calls_SeatsBooked.emplace_back(seats, userKey);
         }
 
         virtual void CartCreated(int cartId, int userKey) override
@@ -79,7 +79,7 @@ namespace ct::test
             calls_SeatSelected.clear();
             calls_SeatDeselected.clear();
             calls_SeatsDeselected.clear();
-            calls_SeatsOrdered.clear();
+            calls_SeatsBooked.clear();
             calls_CartCreated.clear();
             calls_CartRecreated.clear();
             calls_CartExpired.clear();
@@ -88,7 +88,7 @@ namespace ct::test
         std::vector<std::pair<model::Seat, int>> calls_SeatSelected;
         std::vector<std::pair<model::Seat, int>> calls_SeatDeselected;
         std::vector<std::pair<std::vector<model::Seat>, int>> calls_SeatsDeselected;
-        std::vector<std::pair<std::vector<model::Seat>, int>> calls_SeatsOrdered;
+        std::vector<std::pair<std::vector<model::Seat>, int>> calls_SeatsBooked;
         std::vector<std::pair<int, int>> calls_CartCreated;
         std::vector<std::pair<int, int>> calls_CartRecreated;
         std::vector<std::pair<int, int>> calls_CartExpired;
@@ -155,7 +155,7 @@ namespace ct::test
             .column = 0,
             .state = model::Seat::SELECTED_BY_CURRENT_USER,
             .cartId = 0,
-            .orderId = -1
+            .bookingId = -1
         }));
     }
 
@@ -190,7 +190,7 @@ namespace ct::test
             .column = 1,
             .state = model::Seat::SELECTED_BY_CURRENT_USER,
             .cartId = 0,
-            .orderId = -1
+            .bookingId = -1
         }));
     }
 
@@ -230,7 +230,7 @@ namespace ct::test
                 .column = 0,
                 .state = model::Seat::FREE,
                 .cartId = -1,
-                .orderId = -1
+                .bookingId = -1
             },
             {
                 .id = 11,
@@ -239,7 +239,7 @@ namespace ct::test
                 .column = 1,
                 .state = model::Seat::FREE,
                 .cartId = -1,
-                .orderId = -1
+                .bookingId = -1
             },
             {
                 .id = 12,
@@ -248,7 +248,7 @@ namespace ct::test
                 .column = 2,
                 .state = model::Seat::FREE,
                 .cartId = -1,
-                .orderId = -1
+                .bookingId = -1
             },
         }));
 
@@ -261,7 +261,7 @@ namespace ct::test
             .column = 0,
             .state = model::Seat::SELECTED_BY_CURRENT_USER,
             .cartId = 0,
-            .orderId = -1
+            .bookingId = -1
         }));
     }
 }

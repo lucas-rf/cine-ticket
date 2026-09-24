@@ -26,12 +26,12 @@ namespace ct::impl
         virtual model::RoomSession ViewRoomSessionDetails(int movieSessionId, int userKey) const override;
         virtual model::Cart ViewCartDetails(int userKey) const override;
         virtual model::Seat GetSeat(int seatId, int userKey) const override;
-        virtual model::Order ViewOrderDetails(const std::string& orderKey) const override;
+        virtual model::Booking ViewBookingDetails(const std::string& bookingKey) const override;
 
         virtual bool SelectSeat(int seatId, int userKey) override;
         virtual bool DeselectSeat(int seatId, int userKey) override;
 
-        virtual std::optional<model::Order> OrderCart(int userKey, const std::string& orderKey, const std::string& userEmail) override;
+        virtual std::optional<model::Booking> BookCart(int userKey, const std::string& bookingKey, const std::string& userEmail) override;
 
     private:
         struct ActiveCart
@@ -63,7 +63,7 @@ namespace ct::impl
         inline void seatSelected(model::Seat& seat, int userKey, int cartId);
         inline void seatDeselected(model::Seat& seat, int userKey);
         inline void seatsDeselected(std::vector<model::Seat>& seats, int userKey);
-        inline void seatsOrdered(std::vector<model::Seat>& seats, int userKey);
+        inline void seatsBooked(std::vector<model::Seat>& seats, int userKey);
 
         void cartCreated(const ActiveCart& cart);
         void cartRecreated(const ActiveCart& cart);

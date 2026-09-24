@@ -74,9 +74,9 @@ namespace ct::impl
         return db.Seat_Get(seatId, userKey);
     }
 
-    model::Order TicketPlatformImpl::ViewOrderDetails(const std::string& orderKey) const
+    model::Booking TicketPlatformImpl::ViewBookingDetails(const std::string& bookingKey) const
     {
-        return db.Order_ViewDetailed(orderKey);
+        return db.Booking_ViewDetailed(bookingKey);
     }
 
     bool TicketPlatformImpl::SelectSeat(int seatId, int userKey)
@@ -162,13 +162,13 @@ namespace ct::impl
         return true;
     }
 
-    std::optional<model::Order> TicketPlatformImpl::OrderCart(int userKey, const std::string& orderKey, const std::string& userEmail)
+    std::optional<model::Booking> TicketPlatformImpl::BookCart(int userKey, const std::string& bookingKey, const std::string& userEmail)
     {
         auto activeCart = getCart(userKey);
         if(!activeCart)
             return {};
 
-        std::optional<model::Order> order;
+        std::optional<model::Booking> booking;
 
         {
             std::lock_guard<std::mutex> guard{activeCart->lock};
@@ -178,14 +178,14 @@ namespace ct::impl
             activeCart->expired = true;
             timer.Cancel(activeCart->timerId);
 
-            order = db.Order_CreateFromCart(activeCart->dbCart.id, orderKey, userEmail);
+            booking = db.Booking_CreateFromCart(activeCart->dbCart.id, bookingKey, userEmail);
 
             removeActiveCart(userKey);
         }
 
-        seatsOrdered(order->seats, userKey);
+        seatsBooked(booking->seats, userKey);
 
-        return order;
+        return booking;
     }
 
     std::shared_ptr<TicketPlatformImpl::ActiveCart> TicketPlatformImpl::getCart(int userKey) const
@@ -291,10 +291,10 @@ namespace ct::impl
         }
     }
 
-    void TicketPlatformImpl::seatsOrdered(std::vector<model::Seat>& seats, int userKey)
+    void TicketPlatformImpl::seatsBooked(std::vector<model::Seat>& seats, int userKey)
     {
         if(roomEventEnabled(seats[0].movieSessionId))
-            listener->SeatsOrdered(seats, userKey);
+            listener->SeatsBooked(seats, userKey);
     }
 
     void TicketPlatformImpl::cartCreated(const ActiveCart& cart)

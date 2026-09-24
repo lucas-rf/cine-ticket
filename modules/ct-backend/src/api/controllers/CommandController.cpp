@@ -1,10 +1,10 @@
 #include <ct-backend/api/controllers/CommandController.h>
 #include <ct-backend/utils/wrappers/JsonConverterWrapper.h>
-#include <ct-backend/utils/json/OrderJson.h>
+#include <ct-backend/utils/json/BookingJson.h>
 
 namespace ct::api
 {
-    constexpr int ORDER_KEY_SIZE = 6;
+    constexpr int BOOKING_KEY_SIZE = 6;
 
     static auto getRandomSeed()
     {
@@ -22,7 +22,7 @@ namespace ct::api
 
         CROW_ROUTE(app, "/seat/<int>/select").methods("POST"_method)(std::bind(&CommandController::SelectSeat, this, _1, _2));
         CROW_ROUTE(app, "/seat/<int>/deselect").methods("POST"_method)(std::bind(&CommandController::DeselectSeat, this, _1, _2));
-        CROW_ROUTE(app, "/order/<string>").methods("POST"_method)(std::bind(&CommandController::OrderCart, this, _1, _2));
+        CROW_ROUTE(app, "/booking/<string>").methods("POST"_method)(std::bind(&CommandController::BookCart, this, _1, _2));
     }
 
     crow::response CommandController::SelectSeat(const crow::request& request, int seatId)
@@ -46,22 +46,22 @@ namespace ct::api
         }
     }
 
-    crow::response CommandController::OrderCart(const crow::request& request, const std::string& userEmail)
+    crow::response CommandController::BookCart(const crow::request& request, const std::string& userEmail)
     {
-        auto order = platform.OrderCart(session.GetUserKey(request), generateOrderKey(), userEmail);
+        auto booking = platform.BookCart(session.GetUserKey(request), generateBookingKey(), userEmail);
         nlohmann::json obj;
-        if(order)
-            obj = order.value();
+        if(booking)
+            obj = booking.value();
         else
             obj = false;
         return crow::response("application/json", obj.dump());
     }
 
-    std::string CommandController::generateOrderKey()
+    std::string CommandController::generateBookingKey()
     {
         std::uniform_int_distribution<int> dist(0, 'Z' - 'A' + 10);
-        std::string key(ORDER_KEY_SIZE, 0);
-        for(int i = 0; i < ORDER_KEY_SIZE; ++i)
+        std::string key(BOOKING_KEY_SIZE, 0);
+        for(int i = 0; i < BOOKING_KEY_SIZE; ++i)
         {
             auto pos = dist(randGen);
             key[i] = pos + 'A' > 'Z' ? pos + '0' - 'Z' + 'A' - 1 : pos + 'A';

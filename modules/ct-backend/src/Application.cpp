@@ -149,7 +149,7 @@ namespace ct
         sendSeats(seats, getConnectionList(seats[0].movieSessionId));
     }
 
-    void Application::SeatsOrdered(const std::vector<model::Seat>& seats, int userKey)
+    void Application::SeatsBooked(const std::vector<model::Seat>& seats, int userKey)
     {
         sendSeats(seats, getConnectionList(seats[0].movieSessionId));
     }

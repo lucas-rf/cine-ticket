@@ -87,11 +87,11 @@ namespace ct
         { }
     };
 
-    class OrderNotFoundException: public ItemNotFoundException
+    class BookingNotFoundException: public ItemNotFoundException
     {
     public:
-        OrderNotFoundException(const std::string& orderKey):
-            ItemNotFoundException(std::format("Order with key #{} not found", orderKey))
+        BookingNotFoundException(const std::string& bookingKey):
+            ItemNotFoundException(std::format("Booking with key #{} not found", bookingKey))
         { }
     };
 

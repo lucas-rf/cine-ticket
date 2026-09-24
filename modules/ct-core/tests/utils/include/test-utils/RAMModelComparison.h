@@ -3,7 +3,7 @@
 #include <ct-core/impl/ramdb/RAMMovie.h>
 #include <ct-core/impl/ramdb/RAMMovieSession.h>
 #include <ct-core/impl/ramdb/RAMCart.h>
-#include <ct-core/impl/ramdb/RAMOrder.h>
+#include <ct-core/impl/ramdb/RAMBooking.h>
 
 namespace ct::impl
 {

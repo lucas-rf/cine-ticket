@@ -4,7 +4,7 @@
 #include <ct-core/model/RoomSession.h>
 #include <ct-core/model/MovieSession.h>
 #include <ct-core/model/Cart.h>
-#include <ct-core/model/Order.h>
+#include <ct-core/model/Booking.h>
 
 namespace ct::model
 {
@@ -17,7 +17,7 @@ namespace ct::model
             left.column == right.column &&
             left.state == right.state &&
             left.cartId == right.cartId &&
-            left.orderId == right.orderId;
+            left.bookingId == right.bookingId;
     }
 
     inline bool operator==(const MovieSession& left, const MovieSession& right)
@@ -75,14 +75,14 @@ namespace ct::model
             left.seats == right.seats;
     }
 
-    inline bool operator==(const Order& left, const Order& right)
+    inline bool operator==(const Booking& left, const Booking& right)
     {
         return
             left.id == right.id &&
             left.movieSessionId == right.movieSessionId &&
             left.userEmail == right.userEmail &&
-            left.orderKey == right.orderKey &&
-            left.orderTime == right.orderTime &&
+            left.bookingKey == right.bookingKey &&
+            left.bookingTime == right.bookingTime &&
             left.seatCount == right.seatCount &&
             left.seats == right.seats;
     }
