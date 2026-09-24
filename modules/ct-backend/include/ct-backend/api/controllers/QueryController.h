@@ -14,6 +14,7 @@ namespace ct::api
         crow::response Movie_ViewDetailed(const crow::request& request, int movieId, int day) const;
         crow::response Movies_GetAll(const crow::request& request) const;
         crow::response Movies_ViewAllByTheater(const crow::request& request, int theaterId, int day) const;
+        crow::response Theaters_GetAll(const crow::request& request) const;
         crow::response RoomSession_ViewDetailed(const crow::request& request, int movieSessionId) const;
         crow::response Cart_ViewDetailed(const crow::request& request) const;
         crow::response Seat_Get(const crow::request& request, int seatId) const;

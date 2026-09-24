@@ -22,7 +22,7 @@ namespace ct::api
 
         CROW_ROUTE(app, "/seat/<int>/select").methods("POST"_method)(std::bind(&CommandController::SelectSeat, this, _1, _2));
         CROW_ROUTE(app, "/seat/<int>/deselect").methods("POST"_method)(std::bind(&CommandController::DeselectSeat, this, _1, _2));
-        CROW_ROUTE(app, "/booking/<string>").methods("POST"_method)(std::bind(&CommandController::BookCart, this, _1, _2));
+        CROW_ROUTE(app, "/book/<string>").methods("POST"_method)(std::bind(&CommandController::BookCart, this, _1, _2));
     }
 
     crow::response CommandController::SelectSeat(const crow::request& request, int seatId)

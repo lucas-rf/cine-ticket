@@ -7,6 +7,7 @@ namespace ct::model
         j = nlohmann::json{
             {"id", movieSession.id},
             {"roomId", movieSession.roomId},
+            {"movieId", movieSession.movieId},
             {"day", movieSession.day},
             {"time", movieSession.time},
             {"price", movieSession.price}
@@ -17,6 +18,7 @@ namespace ct::model
     {
         j.at("id").get_to(movieSession.id);
         j.at("roomId").get_to(movieSession.roomId);
+        j.at("movieId").get_to(movieSession.movieId);
         j.at("day").get_to(movieSession.day);
         j.at("time").get_to(movieSession.time);
         j.at("price").get_to(movieSession.price);

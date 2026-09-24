@@ -20,6 +20,8 @@ namespace ct
         virtual std::vector<model::Movie> Movies_GetAll() const = 0;
         virtual std::vector<model::Movie> Movies_ViewByTheater(int theaterId, int day) const = 0;
 
+        virtual std::vector<model::Theater> Theaters_GetAll() const = 0;
+
         virtual model::RoomSession RoomSession_ViewDetailed(int movieSessionId, int userKey) const = 0;
 
         virtual std::pair<model::Cart, bool> Cart_GetOrCreate(int userKey) = 0;

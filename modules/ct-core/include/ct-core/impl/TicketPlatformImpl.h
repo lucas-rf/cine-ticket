@@ -23,6 +23,7 @@ namespace ct::impl
         virtual model::Movie ViewMovieDetails(int movieId, int day) const override;
         virtual std::vector<model::Movie> GetAllMovies() const override;
         virtual std::vector<model::Movie> ViewMoviesByTheater(int theaterId, int day) const override;
+        virtual std::vector<model::Theater> GetAllTheaters() const override;
         virtual model::RoomSession ViewRoomSessionDetails(int movieSessionId, int userKey) const override;
         virtual model::Cart ViewCartDetails(int userKey) const override;
         virtual model::Seat GetSeat(int seatId, int userKey) const override;

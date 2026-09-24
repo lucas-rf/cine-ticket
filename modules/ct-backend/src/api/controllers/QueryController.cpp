@@ -22,6 +22,7 @@ namespace ct::api
         CROW_ROUTE(app, "/movie/<int>/<int>")(std::bind(&QueryController::Movie_ViewDetailed, this, _1, _2, _3));
         CROW_ROUTE(app, "/movies")(std::bind(&QueryController::Movies_GetAll, this, _1));
         CROW_ROUTE(app, "/movies/<int>/<int>")(std::bind(&QueryController::Movies_ViewAllByTheater, this, _1, _2, _3));
+        CROW_ROUTE(app, "/theaters")(std::bind(&QueryController::Theaters_GetAll, this, _1));
         CROW_ROUTE(app, "/roomSession/<int>")(std::bind(&QueryController::RoomSession_ViewDetailed, this, _1, _2));
         CROW_ROUTE(app, "/cart")(std::bind(&QueryController::Cart_ViewDetailed, this, _1));
         CROW_ROUTE(app, "/seat/<int>")(std::bind(&QueryController::Seat_Get, this, _1, _2));
@@ -46,6 +47,11 @@ namespace ct::api
     crow::response QueryController::Movies_ViewAllByTheater(const crow::request& request, int theaterId, int day) const
     {
         return utils::JsonConverterWrapper([this, theaterId, day]() { return platform.ViewMoviesByTheater(theaterId, day); });
+    }
+
+    crow::response QueryController::Theaters_GetAll(const crow::request& request) const
+    {
+        return utils::JsonConverterWrapper([this]() { return platform.GetAllTheaters(); });
     }
 
     crow::response QueryController::RoomSession_ViewDetailed(const crow::request& request, int movieSessionId) const

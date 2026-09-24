@@ -94,6 +94,15 @@ namespace ct::impl
         return moviesVec;
     }
 
+    std::vector<model::Theater> RAMDatabase::Theaters_GetAll() const
+    {
+        std::vector<model::Theater> theaters;
+        theaters.reserve(data.theaters.size());
+        for(auto& theater : data.theaters)
+            theaters.emplace_back(theater.id, theater.name);
+        return theaters;
+    }
+
     model::RoomSession RAMDatabase::RoomSession_ViewDetailed(int movieSessionId, int userKey) const
     {
         if(movieSessionId < 0 || movieSessionId >= data.movieSessions.size())
@@ -103,7 +112,13 @@ namespace ct::impl
         auto& room = data.rooms[session.roomId];
         auto& theater = data.theaters[room.theaterId];
         return model::RoomSession{
+            session.id,
+            session.day,
+            session.time,
+            session.price,
             model::Theater{theater.id, theater.name},
+            generateRoomModel(room, {}),
+            generateModelMovie(data.movies[session.movieId], {}),
             generateSeatModels(session.startingSeatId, session.startingSeatId + room.rows * room.columns, userKey)
         };
     }
@@ -295,29 +310,7 @@ namespace ct::impl
             for(auto& [roomId, sessionsIds] : roomsToSessions)
             {
                 auto& room = data.rooms[roomId];
-                theaterRooms.emplace_back(model::Room{
-                    roomId,
-                    theaterId,
-                    room.number,
-                    room.type,
-                    room.rows,
-                    room.columns
-                });
-
-                auto& roomSessions = theaterRooms.back().sessions;
-
-                roomSessions.reserve(sessionsIds.size());
-                for(auto sessionId : sessionsIds)
-                {
-                    auto& session = data.movieSessions[sessionId];
-                    roomSessions.push_back(model::MovieSession{
-                        sessionId,
-                        roomId,
-                        session.day,
-                        session.time,
-                        session.price
-                    });
-                }
+                theaterRooms.push_back(generateRoomModel(room, sessionsIds));
             }
         }
 
@@ -340,6 +333,35 @@ namespace ct::impl
             ramCart.expirationTime,
             static_cast<int>(ramCart.idxSeats.size()),
             includeSeats ? genSeats() : decltype(model::Cart::seats){}
+        };
+    }
+
+    model::Room RAMDatabase::generateRoomModel(const RAMRoom& ramRoom, const std::vector<int>& sessionsIds) const
+    {
+        std::vector<model::MovieSession> roomSessions;
+
+        roomSessions.reserve(sessionsIds.size());
+        for(auto sessionId : sessionsIds)
+        {
+            auto& session = data.movieSessions[sessionId];
+            roomSessions.push_back(model::MovieSession{
+                sessionId,
+                ramRoom.id,
+                session.movieId,
+                session.day,
+                session.time,
+                session.price
+            });
+        }
+
+        return model::Room{
+            ramRoom.id,
+            ramRoom.theaterId,
+            ramRoom.number,
+            ramRoom.type,
+            ramRoom.rows,
+            ramRoom.columns,
+            std::move(roomSessions)
         };
     }
 

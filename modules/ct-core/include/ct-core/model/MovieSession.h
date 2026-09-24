@@ -6,6 +6,7 @@ namespace ct::model
     {
         int id;
         int roomId;
+        int movieId;
         int day;
         int time;
         float price;

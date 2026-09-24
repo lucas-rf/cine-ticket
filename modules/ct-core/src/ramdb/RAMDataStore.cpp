@@ -74,9 +74,12 @@ namespace ct::impl
                 {
                     for(auto& session : day)
                     {
+                        auto& movie = moviesByKey.at(session["movie-key"]).get();
+
                         data.movieSessions.push_back(RAMMovieSession{
                             nextSessionId++,
                             ramRoom.id,
+                            movie.id,
                             nextDay,
                             session["time-hour"].get<int>() * 60 + session["time-minute"].get<int>(),
                             session["price"],
@@ -109,7 +112,6 @@ namespace ct::impl
                             }
                         }
 
-                        auto& movie = moviesByKey.at(session["movie-key"]).get();
                         if(nextDay >= movie.idxDaysToSessions.size())
                             movie.idxDaysToSessions.resize(nextDay + 1);
                         movie.idxDaysToSessions[nextDay].push_back(ramSession.id);

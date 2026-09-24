@@ -8,6 +8,7 @@ namespace ct::impl
     {
         int id;
         int roomId;
+        int movieId;
         int day;
         int time;
         float price;

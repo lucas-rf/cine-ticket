@@ -24,6 +24,8 @@ namespace ct::impl
         virtual std::vector<model::Movie> Movies_GetAll() const override;
         virtual std::vector<model::Movie> Movies_ViewByTheater(int theaterId, int day) const override;
 
+        virtual std::vector<model::Theater> Theaters_GetAll() const override;
+
         virtual model::RoomSession RoomSession_ViewDetailed(int movieSessionId, int userKey) const override;
 
         virtual std::pair<model::Cart, bool> Cart_GetOrCreate(int userKey) override;
@@ -50,6 +52,7 @@ namespace ct::impl
         
         std::vector<model::Theater> expandTheaters(const std::unordered_map<int, std::unordered_map<int, std::vector<int>>>& theatersToRoomsToSessions) const;
         model::Cart generateModelCart(const RAMCart& ramCart, bool includeSeats) const;
+        model::Room generateRoomModel(const RAMRoom& ramRoom, const std::vector<int>& sessionsIds) const;
         model::Booking generateBookingModel(const RAMBooking& ramBooking) const;
         static model::Movie generateModelMovie(const RAMMovie& ramMovie, std::vector<model::Theater>&& theaters);
         static model::Seat generateSeatModel(const RAMSeat& ramSeat, int userKey);

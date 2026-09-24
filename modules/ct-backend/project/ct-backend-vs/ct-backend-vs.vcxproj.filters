@@ -45,9 +45,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ct-backend-vs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\api\controllers\QueryController.cpp">
       <Filter>Source Files\api\controllers</Filter>
     </ClCompile>

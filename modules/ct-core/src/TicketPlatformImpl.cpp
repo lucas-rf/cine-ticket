@@ -51,6 +51,11 @@ namespace ct::impl
         return db.Movies_ViewByTheater(theaterId, day);
     }
 
+    std::vector<model::Theater> TicketPlatformImpl::GetAllTheaters() const
+    {
+        return db.Theaters_GetAll();
+    }
+
     model::RoomSession TicketPlatformImpl::ViewRoomSessionDetails(int movieSessionId, int userKey) const
     {
         return db.RoomSession_ViewDetailed(movieSessionId, userKey);

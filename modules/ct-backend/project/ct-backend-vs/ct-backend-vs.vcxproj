@@ -148,12 +148,6 @@
     <ClCompile Include="..\..\src\utils\json\RoomSessionJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\SeatJson.cpp" />
     <ClCompile Include="..\..\src\utils\json\TheaterJson.cpp" />
-    <ClCompile Include="ct-backend-vs.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ct-core\project\ct-core-vs\ct-core-vs.vcxproj">
