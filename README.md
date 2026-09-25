@@ -85,15 +85,15 @@ curl -X GET http://localhost:18080/movie/0
 ##### Example response
 ``` json
 {
-    "id": 0,
-    "title": "Die Hard with a Vengeance",
-    "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
-    "classification": "R",
-    "genre": ["Action", "Adventure", "Thriller"],
-    "coverImage": "die-hard-cover.png",
+    "id": 0,
+    "title": "Die Hard with a Vengeance",
+    "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
+    "classification": "R",
+    "genre": ["Action", "Adventure", "Thriller"],
+    "coverImage": "die-hard-cover.png",
     "backgroundImage": "die-hard-background.png",
-    "runtime": 128,
-    "theaters": []
+    "runtime": 128,
+    "theaters": []
 }
 ```
 </details>
@@ -210,15 +210,15 @@ curl -X GET http://localhost:18080/movies
 ``` json
 [
     {
-        "id": 0,
-        "title": "Die Hard with a Vengeance",
-        "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
-        "classification": "R",
-        "genre": ["Action", "Adventure", "Thriller"],
-        "coverImage": "die-hard-cover.png",
+        "id": 0,
+        "title": "Die Hard with a Vengeance",
+        "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
+        "classification": "R",
+        "genre": ["Action", "Adventure", "Thriller"],
+        "coverImage": "die-hard-cover.png",
         "backgroundImage": "die-hard-background.png",
-        "runtime": 128,
-        "theaters": []
+        "runtime": 128,
+        "theaters": []
     },
     {
         "id": 1,
@@ -986,6 +986,7 @@ curl -X POST http://localhost:18080/book
 <details>
   <summary><span style="font-size: 1.4em;"><b>WEBSOCKET&ensp;</b><code>/movieSession/{movieSessionId}/events</code>&ensp;::&ensp;</span><span style="font-size: 1.2em;">Listens to events from a specific <i>Movie Session</i></span></summary>
 
+
 A *User* can connect to this websocket to subscribe to events that happen to *Seats* in a given *Movie Session*.
 
 ##### Request parameters
@@ -1187,7 +1188,6 @@ cp -R <ct-backend-root-dir>/example/* /app/
 ```
 2. Navigate to the directory and run the server
 ``` console
-[1;31mThis is bold red text [0m
 cd /app
 ./bin/ct-backend --port 18080 --multithreaded --database-file ./db/cine-ticket-db.json
 ```
@@ -1202,10 +1202,9 @@ python <repo-root>/modules/ct-backend/scripts/ct-cli.py http://localhost:18080
 ```
 
 <details>
-  <summary>Interaction example:</summary>
-``` console
-~$ python <repo-root>/modules/ct-backend/scripts/ct-cli.py http://localhost:18080
+<summary>Interaction example:</summary>
 
+<pre><code>
 ************************
 *                      *
 *   CINE TICKET HOME   *
@@ -1228,7 +1227,7 @@ Type option: movies
 
 Movie #0
 Title.........: Die Hard with a Vengeance
-Synopsis......: John McClane is forced out of suspension to play a game of "Simon Says" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.
+Synopsis......: John McClane is forced out of suspension to play a game of &quot;Simon Says&quot; by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn&#39;t do what he says.
 Classification: R
 Genre.........: Action Adventure Thriller
 Runtime.......: 128 minutes
@@ -1338,7 +1337,7 @@ Type option: session-11
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1367,7 +1366,7 @@ Type option: select-B01
 
  [A00]  [A01]  [A02]  [A03]  [A04]
 
- [B00]  >B01<  [B02]  [B03]  [B04]
+ [B00]  &gt;B01&lt;  [B02]  [B03]  [B04]
 
  [C00]  [C01]  [C02]  :C03:  :C04:
 
@@ -1375,7 +1374,7 @@ Type option: select-B01
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1404,15 +1403,15 @@ Type option: select-C02
 
  [A00]  [A01]  [A02]  [A03]  [A04]
 
- [B00]  >B01<  [B02]  [B03]  [B04]
+ [B00]  &gt;B01&lt;  [B02]  [B03]  [B04]
 
- [C00]  [C01]  >C02<  :C03:  :C04:
+ [C00]  [C01]  &gt;C02&lt;  :C03:  :C04:
 
  [D00]  [D01]  [D02]  [D03]  [D04]
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1441,7 +1440,7 @@ Type option: deselect-C02
 
  [A00]  [A01]  [A02]  [A03]  [A04]
 
- [B00]  >B01<  [B02]  [B03]  [B04]
+ [B00]  &gt;B01&lt;  [B02]  [B03]  [B04]
 
  [C00]  [C01]  [C02]  :C03:  :C04:
 
@@ -1449,7 +1448,7 @@ Type option: deselect-C02
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1478,7 +1477,7 @@ Type option: select-B02
 
  [A00]  [A01]  [A02]  [A03]  [A04] 
 
- [B00]  >B01<  >B02<  [B03]  [B04]
+ [B00]  &gt;B01&lt;  &gt;B02&lt;  [B03]  [B04]
 
  [C00]  [C01]  [C02]  :C03:  :C04:
 
@@ -1486,7 +1485,7 @@ Type option: select-B02
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1638,7 +1637,7 @@ Type option: session-5
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1671,11 +1670,11 @@ Type option: select-D01
 
  [C00]  [C01]  [C02]  [C03]  [C04]
 
- [D00]  >D01<  [D02]  [D03]  [D04]
+ [D00]  &gt;D01&lt;  [D02]  [D03]  [D04]
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1708,11 +1707,11 @@ Type option: select-D02
 
  [C00]  [C01]  [C02]  [C03]  [C04] 
 
- [D00]  >D01<  >D02<  [D03]  [D04]
+ [D00]  &gt;D01&lt;  &gt;D02&lt;  [D03]  [D04]
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1745,11 +1744,11 @@ Type option: select-D03
 
  [C00]  [C01]  [C02]  [C03]  [C04] 
 
- [D00]  >D01<  >D02<  >D03<  [D04]
+ [D00]  &gt;D01&lt;  &gt;D02&lt;  &gt;D03&lt;  [D04]
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1806,7 +1805,7 @@ Type option: back
 
 Legend:
   [RCC] Available
-  >RCC< Selected by you
+  &gt;RCC&lt; Selected by you
   |RCC| Selected by another person
   :RCC: Booked (unavailable)
 
@@ -1969,5 +1968,5 @@ Options:
 
 Type option: quit
 
-```
+</code></pre>
 </details>
