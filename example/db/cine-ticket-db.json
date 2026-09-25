@@ -1,6 +1,6 @@
 {
   "settings": {
-    "cartDuration": 3000
+    "cartDuration": 300
   },
   "movies": [
     {
@@ -9,8 +9,8 @@
       "classification": "R",
       "synopsis": "John McClane is forced out of suspension to play a game of \"Simon Says\" by a terrorist who has planted bombs all around New York City and will detonate them if McClane doesn't do what he says.",
       "genre": ["Action", "Adventure", "Thriller"],
-      "coverImage": "die-hard-cover.png",
-      "backgroundImage": "die-hard-background.png",
+      "coverImage": "die-hard-cover.jpg",
+      "backgroundImage": "die-hard-background.jpg",
       "runtime": 128
     },
     {
@@ -19,8 +19,8 @@
       "classification": "R",
       "synopsis": "Two detectives try to track down a serial killer who chooses his victims based on the Seven Deadly Sins.",
       "genre": ["Drama", "Crime"],
-      "coverImage": "seven-cover.png",
-      "backgroundImage": "seven-background.png",
+      "coverImage": "seven-cover.jpg",
+      "backgroundImage": "seven-background.jpg",
       "runtime": 127
     },
     {
@@ -29,8 +29,8 @@
       "classification": "R",
       "synopsis": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.",
       "genre": ["Drama", "War", "Epic"],
-      "coverImage": "braveheart-cover.png",
-      "backgroundImage": "braveheart-background.png",
+      "coverImage": "braveheart-cover.jpg",
+      "backgroundImage": "braveheart-background.jpg",
       "runtime": 178
     },
     {
@@ -39,8 +39,8 @@
       "classification": "PG",
       "synopsis": "A magic board game summons jungle perils and a missing boy.",
       "genre": ["Adventure", "Fantasy"],
-      "coverImage": "jumanji-cover.png",
-      "backgroundImage": "jumanji-background.png",
+      "coverImage": "jumanji-cover.jpg",
+      "backgroundImage": "jumanji-background.jpg",
       "runtime": 104
     }
   ],

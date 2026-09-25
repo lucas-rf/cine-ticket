@@ -49,7 +49,7 @@ namespace ct::api
     crow::response CommandController::BookCart(const crow::request& request, const std::string& userEmail)
     {
         auto booking = platform.BookCart(session.GetUserKey(request), generateBookingKey(), userEmail);
-        nlohmann::json obj;
+        nlohmann::ordered_json obj;
         if(booking)
             obj = booking.value();
         else

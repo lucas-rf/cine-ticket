@@ -11,7 +11,7 @@ namespace ct::utils
     {
         try
         {
-            nlohmann::json obj(function());
+            nlohmann::ordered_json obj(function());
             return crow::response("application/json", obj.dump());
         }
         catch(ItemNotFoundException& exc)

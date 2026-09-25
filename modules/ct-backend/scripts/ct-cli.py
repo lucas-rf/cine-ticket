@@ -229,7 +229,7 @@ class ViewTheaterByDay(ViewBase):
     print()
     print("*" * (len(name) + 17))
     print("*" + " " * (len(name) + 15) + "*")
-    print(f"*  THEATER: {name}  *")
+    print(f"*   THEATER: {name}   *")
     print("*" + " " * (len(name) + 15) + "*")
     print("*" * (len(name) + 17))
     print()
@@ -267,10 +267,10 @@ class ViewMovieSession(ViewBase):
     super().__init__(app)
 
   FORMAT = {
-    "FREE": "[bright_yellow]{}[/bright_yellow]",
-    "SELECTED_BY_CURRENT_USER": "[bright_blue]{}[/bright_blue]",
-    "SELECTED_BY_OTHER_USER": "[red]{}[/red]",
-    "BOOKED": "[bright_black]{}[/bright_black]",
+    "FREE": "[bright_yellow] [{}] [/bright_yellow]",
+    "SELECTED_BY_CURRENT_USER": "[bright_blue] >{}< [/bright_blue]",
+    "SELECTED_BY_OTHER_USER": "[red] |{}| [/red]",
+    "BOOKED": "[bright_black] :{}: [/bright_black]",
   }
 
   def Render(self, movieSessionId):
@@ -311,14 +311,14 @@ class ViewMovieSession(ViewBase):
 
     for row in range(rows):
       for column in range(columns):
-        richprint(format[row][column].format(f" [{chr(ord('A') + row)}{column:02d}] "), end="")
+        richprint(format[row][column].format(f"{chr(ord('A') + row)}{column:02d}"), end="")
       print("\n")
 
-    print("Seat states:")
-    richprint("[bright_yellow]  Available[/bright_yellow]")
-    richprint("[bright_blue]  Selected by you[/bright_blue]")
-    richprint("[red]  Selected by another person[/red]")
-    richprint("[bright_black]  Booked (unavailable)[/bright_black]")
+    print("Legend:")
+    richprint("[bright_yellow]  [RCC] Available[/bright_yellow]")
+    richprint("[bright_blue]  >RCC< Selected by you[/bright_blue]")
+    richprint("[red]  |RCC| Selected by another person[/red]")
+    richprint("[bright_black]  :RCC: Booked (unavailable)[/bright_black]")
     print()
 
   def GetPath(self):

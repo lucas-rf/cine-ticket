@@ -5,6 +5,6 @@
 
 namespace ct::model
 {
-    void to_json(nlohmann::json& j, const Cart& cart);
-    void from_json(const nlohmann::json& j, Cart& cart);
+    void to_json(nlohmann::ordered_json& j, const Cart& cart);
+    void from_json(const nlohmann::ordered_json& j, Cart& cart);
 }

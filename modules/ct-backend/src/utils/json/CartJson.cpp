@@ -4,9 +4,9 @@
 
 namespace ct::model
 {
-    void to_json(nlohmann::json& j, const Cart& cart)
+    void to_json(nlohmann::ordered_json& j, const Cart& cart)
     {
-        j = nlohmann::json{
+        j = nlohmann::ordered_json{
             {"id", cart.id},
             {"movieSessionId", cart.movieSessionId},
             {"expirationTime", utils::TimePointToStr(cart.expirationTime)},
@@ -15,7 +15,7 @@ namespace ct::model
         };
     }
 
-    void from_json(const nlohmann::json& j, Cart& cart)
+    void from_json(const nlohmann::ordered_json& j, Cart& cart)
     {
         j.at("id").get_to(cart.id);
         j.at("movieSessionId").get_to(cart.movieSessionId);

@@ -165,7 +165,7 @@ namespace ct
 
     void Application::sendSeats(const std::vector<model::Seat>& seats, const WSConnList& conns)
     {
-        nlohmann::json obj(seats);
+        nlohmann::ordered_json obj(seats);
         auto text = obj.dump();
 
         for(auto conn : conns)

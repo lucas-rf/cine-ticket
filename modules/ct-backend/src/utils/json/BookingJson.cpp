@@ -4,9 +4,9 @@
 
 namespace ct::model
 {
-    void to_json(nlohmann::json& j, const Booking& booking)
+    void to_json(nlohmann::ordered_json& j, const Booking& booking)
     {
-        j = nlohmann::json{
+        j = nlohmann::ordered_json{
             {"id", booking.id},
             {"movieSessionId", booking.movieSessionId},
             {"userEmail", booking.userEmail},
@@ -17,7 +17,7 @@ namespace ct::model
         };
     }
 
-    void from_json(const nlohmann::json& j, Booking& booking)
+    void from_json(const nlohmann::ordered_json& j, Booking& booking)
     {
         j.at("id").get_to(booking.id);
         j.at("movieSessionId").get_to(booking.movieSessionId);

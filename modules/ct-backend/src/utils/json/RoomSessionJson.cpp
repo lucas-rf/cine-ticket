@@ -6,9 +6,9 @@
 
 namespace ct::model
 {
-    void to_json(nlohmann::json& j, const RoomSession& roomSession)
+    void to_json(nlohmann::ordered_json& j, const RoomSession& roomSession)
     {
-        j = nlohmann::json{
+        j = nlohmann::ordered_json{
             {"id", roomSession.id},
             {"day", roomSession.day},
             {"time", roomSession.time},
@@ -20,7 +20,7 @@ namespace ct::model
         };
     }
 
-    void from_json(const nlohmann::json& j, RoomSession& roomSession)
+    void from_json(const nlohmann::ordered_json& j, RoomSession& roomSession)
     {
         j.at("id").get_to(roomSession.id);
         j.at("day").get_to(roomSession.day);

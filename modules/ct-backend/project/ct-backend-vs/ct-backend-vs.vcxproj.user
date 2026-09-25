@@ -4,24 +4,24 @@
     <LocalDebuggerEnvironment>CINE_TICKET_PORT=5210
 CINE_TICKET_DB_FILE=D:\Projects\Personal\Software\Jobs\beamtrail\cine-ticket\modules\ct-backend\include\ct-backend\Application.h</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "cine-ticket-db.json"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "..\..\..\..\example\db\cine-ticket-db.json"</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerEnvironment>CINE_TICKET_PORT=5210
 CINE_TICKET_DB_FILE=D:\Projects\Personal\Software\Jobs\beamtrail\cine-ticket\modules\ct-backend\include\ct-backend\Application.h</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "cine-ticket-db.json"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "..\..\..\..\example\db\cine-ticket-db.json"</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerEnvironment>CINE_TICKET_PORT=5210
 CINE_TICKET_DB_FILE=D:\Projects\Personal\Software\Jobs\beamtrail\cine-ticket\modules\ct-backend\include\ct-backend\Application.h</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "cine-ticket-db.json"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "..\..\..\..\example\db\cine-ticket-db.json"</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerEnvironment>CINE_TICKET_PORT=5210
 CINE_TICKET_DB_FILE=D:\Projects\Personal\Software\Jobs\beamtrail\cine-ticket\modules\ct-backend\include\ct-backend\Application.h</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "cine-ticket-db.json"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--port 18080 --multithreaded --database-file "..\..\..\..\example\db\cine-ticket-db.json"</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

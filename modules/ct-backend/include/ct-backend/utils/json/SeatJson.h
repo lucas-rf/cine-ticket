@@ -5,6 +5,6 @@
 
 namespace ct::model
 {
-    void to_json(nlohmann::json& j, const Seat& seat);
-    void from_json(const nlohmann::json& j, Seat& seat);
+    void to_json(nlohmann::ordered_json& j, const Seat& seat);
+    void from_json(const nlohmann::ordered_json& j, Seat& seat);
 }
