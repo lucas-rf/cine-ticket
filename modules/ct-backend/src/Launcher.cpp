@@ -16,7 +16,7 @@ static int getPort(argparse::ArgumentParser& parser)
 {
     auto checkRange = [](int port, const char* msg) -> int
     {
-        if(port < 1024 || port > 65535)
+        if(port < 1 || port > 65535)
             throw ct::CTException(std::vformat(msg, std::make_format_args(port)));
         return port;
     };
@@ -25,7 +25,7 @@ static int getPort(argparse::ArgumentParser& parser)
     {
         auto port = parser.get<int>(PORT_PARAM);
         return checkRange(port, "Invalid port value '{}' from the command line argument, "
-            "please specify a value between 1024 and 65535.");
+            "please specify a value between 1 and 65535.");
     }
 
     if(auto envPort = std::getenv(PORT_ENV_VAR); envPort)
@@ -34,7 +34,7 @@ static int getPort(argparse::ArgumentParser& parser)
         {
             int port = std::stoi(envPort);
             return checkRange(port, "Invalid port value '{}' from the environment variable, "
-                "please specify a value between 1024 and 65535.");
+                "please specify a value between 1 and 65535.");
         }
         catch(std::invalid_argument)
         {

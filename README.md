@@ -1128,44 +1128,40 @@ To build **`ct-backend`**, take the following steps:
 1. Make sure that CMake and a C++ compiler that supports C++20 are present in the system.
 
 2. Clone the repository
-```
+``` console
 git clone https://github.com/lucas-rf/cine-ticket.git
 ```
-2. Check out the branch or tag that you want to build from
-```
+3. Check out the branch or tag that you want to build from
+``` console
 cd ./cine-ticket
 git checkout v1.0
 git submodule update --init --recursive
 ```
-4. Clone the submodules
-```
-git submodule update --init --recursive
-```
-5. Build with CMake
-```
+4. Build with CMake
+``` console
 cd ./modules/ct-backend
 cmake -S . -B build
 cmake --build build --config Release
 ```
-6. Run the tests if you want
-```
+5. Run the tests if you want
+``` console
 ctest --test-dir build
 ```
-7. Install the executable to the destination you want. The executable will be located at `<destination-dir>/bin/ct-backend`
-```
+6. Install the executable to the destination you want. The executable will be located at `<destination-dir>/bin/ct-backend`
+``` console
 cmake --install ./build --prefix "/<install>/<directory>/"
 ```
 
 ### Running **ct-backend**
 
 Assuming the executable is located at `/app/bin`, to get help about the command line parameters you can run:
-```
+``` console
 cd /app
 ./bin/ct-backend --help
 ```
 
 To which the response will be:
-```
+``` console
 Usage: cine-ticket-backend [--help] [--version] [--port VAR] [--multithreaded] [--database-file VAR]
 
 Optional arguments:
@@ -1177,13 +1173,13 @@ Optional arguments:
 ```
 
 To run a server listening at port 18080:
-```
+``` console
 ./bin/ct-backend --port 18080 --multithreaded --database-file </path/to/db/file.json>
 ```
 
 This repository contains a sample file structure at `<repo-root>/example`. To run a demonstration server, you can take the following steps:
 1. Copy the files to where the app will be located
-```
+``` console
 cp -R <ct-backend-root-dir>/example/* /app/
 ```
 2. Navigate to the directory and run the server
@@ -1197,7 +1193,7 @@ cd /app
 The command line tool `ct-cli.py` located at `modules/ct-backend/scripts`, is a simple client that can connect to the backend and showcase its functionality.
 
 To run it, assuming that the server is running locally and listening at the port 18080:
-```
+``` console
 python <repo-root>/modules/ct-backend/scripts/ct-cli.py http://localhost:18080
 ```
 
